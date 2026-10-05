@@ -54,7 +54,7 @@
   gap: var(--ticker-gap);
   padding-right: var(--ticker-gap);
   color: var(--white);
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--ticker-font-size);
   font-weight: 600;
   letter-spacing: -0.02em;
