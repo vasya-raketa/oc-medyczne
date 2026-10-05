@@ -99,7 +99,6 @@
       const heroImage = document.querySelector(".hero-doctor");
       const heroBits = [heroBadge, heroHeading, heroLead, heroCta, heroImage].filter(Boolean);
       gsap.set(heroBits, { opacity: 0 });
-      if (heroCta) gsap.set(heroCta, { transition: "none" });
       document.documentElement.classList.add("is-anim-ready");
 
       if (heroHeading) {
@@ -111,12 +110,7 @@
             autoSplit: true,
             onSplit(self) {
               gsap.set(heroHeading, { opacity: 1 });
-              const tl = gsap.timeline({
-                defaults: { ease },
-                onComplete: () => {
-                  if (heroCta) gsap.set(heroCta, { clearProps: "transition" });
-                },
-              });
+              const tl = gsap.timeline({ defaults: { ease } });
               if (heroImage) {
                 tl.fromTo(
                   heroImage,
@@ -133,7 +127,17 @@
                 tl.fromTo(heroLead, { y: yText, opacity: 0 }, { y: 0, opacity: 1, duration: 0.32 }, 0.5);
               }
               if (heroCta) {
-                tl.fromTo(heroCta, { y: yText, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3 }, 0.68);
+                tl.fromTo(
+                  heroCta,
+                  { y: yText, opacity: 0 },
+                  {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.3,
+                    clearProps: "all",
+                  },
+                  0.68,
+                );
               }
               return tl;
             },
