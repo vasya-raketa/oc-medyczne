@@ -1,4 +1,7 @@
 .DS_Store
 .cursor/settings.json
-api/config.php
+node_modules/
+.env
+.env.local
+.env*.local
 form-data/

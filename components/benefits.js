@@ -107,6 +107,8 @@
     query: "(max-width: 767.98px)",
     label: "Korzyści nadwyżkowego OC",
     role: "region",
+    indicators: true,
+    autoplay: 5000,
   });
 
   const applyMode = () => {

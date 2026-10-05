@@ -30,3 +30,88 @@
   outline: 0.125rem solid var(--blue);
   outline-offset: 0.1875rem;
 }
+
+.scroller-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4375rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scroller-dots[hidden] {
+  display: none;
+}
+
+.scroller-dot {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  cursor: pointer;
+  transition:
+    width 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.scroller-dot[aria-current="true"] {
+  width: 6.1875rem;
+  background: var(--soft);
+}
+
+.scroller-dot-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.scroller-dot.is-playing .scroller-dot-fill {
+  animation: scroller-progress var(--scroller-duration, 5s) linear forwards;
+}
+
+.scroller-dots.is-paused .scroller-dot-fill {
+  animation-play-state: paused;
+}
+
+.scroller-dot:focus-visible {
+  outline: 0.125rem solid var(--blue);
+  outline-offset: 0.1875rem;
+}
+
+@keyframes scroller-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (min-width: 768px) {
+  .scroller-dots {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroller-dot {
+    transition: none;
+  }
+
+  .scroller-dot.is-playing .scroller-dot-fill {
+    animation: none;
+    transform: none;
+  }
+}

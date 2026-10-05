@@ -26,7 +26,8 @@
 .ticker-track {
   position: relative;
   display: flex;
-  flex-shrink: 0;
+  width: max-content;
+  will-change: transform;
   animation: ticker var(--ticker-duration, 30s) linear infinite;
 }
 
@@ -35,8 +36,12 @@
 }
 
 @keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+
   to {
-    transform: translateX(calc(-1 * var(--ticker-shift, 0px)));
+    transform: translateX(-50%);
   }
 }
 
@@ -46,22 +51,25 @@
   }
 }
 
-/* padding-right equals the gap so the row joins its clone seamlessly. */
-.ticker-row {
+.ticker-group {
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  gap: var(--ticker-gap);
-  padding-right: var(--ticker-gap);
   color: var(--white);
   font-family: var(--font-sans);
   font-size: var(--ticker-font-size);
-  font-weight: 600;
+  font-weight: 500;
+  font-synthesis: none;
   letter-spacing: -0.02em;
+}
+
+.ticker-group > * {
+  flex-shrink: 0;
+  padding-inline-end: var(--ticker-gap);
   white-space: nowrap;
 }
 
-.ticker-row img {
+.ticker-group img {
   width: var(--ticker-icon);
   height: var(--ticker-icon);
 }

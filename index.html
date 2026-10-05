@@ -10,6 +10,8 @@
     />
     <link rel="preload" href="assets/fonts/instrument-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/instrument-sans-latin-ext-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/instrument-sans-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/instrument-sans-latin-ext-500-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/instrument-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="styles/fonts.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -81,7 +83,25 @@
       <div class="ticker" aria-label="Zawody medyczne">
         <img class="ticker-wave" src="assets/ticker-wave.svg" alt="" />
         <div class="ticker-track">
-          <ul class="ticker-row">
+          <ul class="ticker-group">
+            <li>Dentysty</li>
+            <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
+            <li>Pielęgniarki</li>
+            <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
+            <li>Położne</li>
+            <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
+            <li>Fizjoterapeuci</li>
+            <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
+            <li>Diagnostycy</li>
+            <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
+            <li>Ratownicy medyczni</li>
+            <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
+            <li>Rehabilitanci</li>
+            <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
+            <li>Opiekunowie medyczni</li>
+            <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
+          </ul>
+          <ul class="ticker-group" aria-hidden="true">
             <li>Dentysty</li>
             <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
             <li>Pielęgniarki</li>
@@ -181,7 +201,7 @@
             </article>
           </div>
 
-          <form class="form-card" id="offer-form" action="api/send.php" method="post" novalidate>
+          <form class="form-card" id="offer-form" action="/api/send" method="post" novalidate>
             <p class="form-success" id="form-success" role="status" aria-live="polite" tabindex="-1"></p>
             <div class="form-grid">
               <div class="field-row">

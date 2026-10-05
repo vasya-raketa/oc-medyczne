@@ -1,25 +1,44 @@
-{
-  const TICKER_SPEED = 60;
+(() => {
+  const SPEED = 60;
   const ticker = document.querySelector(".ticker");
-  const track = ticker.querySelector(".ticker-track");
-  const row = track.querySelector(".ticker-row");
+  const track = ticker?.querySelector(".ticker-track");
+  const source = track?.querySelector(".ticker-group");
+  if (!ticker || !track || !source) return;
+
+  const cycleHTML = source.innerHTML;
+  let frame = 0;
 
   const fillTicker = () => {
-    track.querySelectorAll("[data-clone]").forEach((clone) => clone.remove());
-    const rowWidth = row.getBoundingClientRect().width;
-    const copies = Math.ceil(ticker.clientWidth / rowWidth) + 1;
+    track.replaceChildren();
 
-    for (let i = 0; i < copies; i += 1) {
-      const clone = row.cloneNode(true);
-      clone.dataset.clone = "";
-      clone.setAttribute("aria-hidden", "true");
-      track.append(clone);
+    const group = document.createElement("ul");
+    group.className = "ticker-group";
+    group.innerHTML = cycleHTML;
+    track.append(group);
+
+    const minWidth = ticker.clientWidth;
+    let guard = 0;
+    while (minWidth > 0 && group.getBoundingClientRect().width < minWidth && guard < 24) {
+      group.insertAdjacentHTML("beforeend", cycleHTML);
+      guard += 1;
     }
 
-    track.style.setProperty("--ticker-shift", `${rowWidth}px`);
-    track.style.setProperty("--ticker-duration", `${rowWidth / TICKER_SPEED}s`);
+    const clone = group.cloneNode(true);
+    clone.setAttribute("aria-hidden", "true");
+    track.append(clone);
+
+    const groupWidth = group.getBoundingClientRect().width;
+    if (groupWidth > 0) {
+      track.style.setProperty("--ticker-duration", `${groupWidth / SPEED}s`);
+    }
   };
 
+  const schedule = () => {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(fillTicker);
+  };
+
+  fillTicker();
   document.fonts.ready.then(fillTicker);
-  window.addEventListener("resize", fillTicker);
-}
+  window.addEventListener("resize", schedule);
+})();

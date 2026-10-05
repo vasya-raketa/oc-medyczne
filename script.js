@@ -1,5 +1,5 @@
 /*
-  Contact form (#offer-form): validates like api/send.php (the server stays the source of
+  Contact form (#offer-form): validates like /api/send (the server stays the source of
   truth), posts with fetch() and shows field errors under the fields or one general error.
 */
 {
@@ -99,14 +99,15 @@
     showErrors(errors);
     if (Object.keys(errors).length) return;
 
-    data.set("now", String(Date.now()));
-    data.set("page", location.href);
+    const payload = new URLSearchParams();
+    for (const [key, val] of data.entries()) payload.append(key, val);
+    payload.set("page", location.href);
     setBusy(true);
 
     try {
-      const response = await fetch(form.action, {
+      const response = await fetch("/api/send", {
         method: "POST",
-        body: data,
+        body: payload,
         headers: { Accept: "application/json" },
       });
       const body = await response.json().catch(() => null);

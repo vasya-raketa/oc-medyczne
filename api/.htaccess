@@ -1,6 +1,0 @@
-# Only send.php is public; settings are not reachable over HTTP (lib/ has its own deny rule).
-<FilesMatch "^config(\.example)?\.php$">
-  Require all denied
-</FilesMatch>
-
-Options -Indexes
