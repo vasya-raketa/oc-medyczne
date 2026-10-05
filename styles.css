@@ -55,3 +55,17 @@ main {
   width: 100%;
   overflow-x: clip;
 }
+
+/* Hero is hidden only after JS opts in, and only until GSAP takes over. */
+.js-anim:not(.is-anim-ready) .hero-titles .badge,
+.js-anim:not(.is-anim-ready) .hero-copy h1,
+.js-anim:not(.is-anim-ready) .hero-lead,
+.js-anim:not(.is-anim-ready) .hero-copy .btn-xl,
+.js-anim:not(.is-anim-ready) .hero-doctor {
+  opacity: 0;
+}
+
+/* Extra room so SplitText line masks do not clip Polish descenders (ą ę ż ł). */
+.anim-line {
+  padding-bottom: 0.22em;
+}

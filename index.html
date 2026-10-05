@@ -3,6 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("js-anim");
+        window.setTimeout(function () {
+          if (!window.gsap) document.documentElement.classList.remove("js-anim");
+        }, 3000);
+      }
+    </script>
     <title>Ubezpieczenie OC dla lekarzy | RkRisk</title>
     <meta
       name="description"
@@ -14,6 +22,7 @@
     <link rel="preload" href="assets/fonts/instrument-sans-latin-ext-500-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/instrument-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="styles/fonts.css" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -266,6 +275,9 @@
         </div>
       </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" defer></script>
     <script src="components/ticker.js"></script>
     <script src="components/scroller.js"></script>
     <script src="components/benefits.js"></script>
@@ -274,5 +286,6 @@
     <script src="components/pricing.js"></script>
     <script src="components/coop.js"></script>
     <script src="script.js"></script>
+    <script src="js/animations.js" defer></script>
   </body>
 </html>
