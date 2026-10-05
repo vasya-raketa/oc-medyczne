@@ -1,0 +1,118 @@
+/*
+  Fluid scale: 1rem = 16px at the width of the Figma frame that owns the current range,
+  so every rem value can be copied straight from that frame (px / 16).
+  Frames: mobile 480, tablet 768, laptop 991, desktop 1440.
+  --canvas-width is that frame's width; sections use it as their content max-width.
+  ≤ 767px it is 100%, so sections always span the viewport.
+  --section-padding-x is the side padding of every section ≤ 767px (≥ 768px sections set their own).
+
+  Some mobile sizes are written as
+    calc(<480-frame rem> * var(--k-mobile) + <991-frame rem> * var(--k-desktop))
+  with --k-mobile 1 and --k-desktop 0, i.e. plain rem; --k-fluid is their sum.
+*/
+
+:root {
+  --design-width: 480;
+  --canvas-width: 100%;
+  --section-padding-x: 1.5rem;
+  --k-mobile: 1;
+  --k-desktop: 0;
+  --k-fluid: calc(var(--k-mobile) + var(--k-desktop));
+}
+
+/* ≤ 479px: mobile frame, scaling down to 360px, then frozen. */
+html {
+  font-size: max(12px, 100vw / var(--design-width) * 16);
+}
+
+/* 480–767px: the 480 frame scaled proportionally with the viewport; layout stays full width. */
+@media (min-width: 480px) {
+  html {
+    font-size: calc(100vw / var(--design-width) * 16);
+  }
+}
+
+/*
+  480–767 type & spacing scale (480 frame px / 16). Every section in this range takes
+  its sizes from these tokens only.
+*/
+@media (min-width: 480px) and (max-width: 767.98px) {
+  :root {
+    --text-display: 2.625rem;
+    --text-title: 2.25rem;
+    --text-card-title: 1.75rem;
+    --text-subtitle: 1.5rem;
+    --text-body-lg: 1.25rem;
+    --text-body: 1.125rem;
+    --text-small: 1rem;
+    --text-caption: 0.875rem;
+    --text-micro: 0.75rem;
+    --text-price: 3.75rem;
+    --text-btn: 1.125rem;
+    --text-btn-lg: 1.375rem;
+
+    --leading-tight: 1.1;
+    --leading-body: 1.2;
+    --leading-relaxed: 1.4;
+    --leading-card-title: 2.25rem;
+    --leading-price: 4.5625rem;
+
+    --space-1: 0.25rem;
+    --space-1-5: 0.375rem;
+    --space-2: 0.5rem;
+    --space-2-5: 0.625rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-15: 3.75rem;
+    --space-30: 7.5rem;
+
+    --section-padding-x: var(--space-6);
+    --section-y: var(--space-15);
+    --section-y-lg: var(--space-30);
+    --section-gap: var(--space-10);
+    --card-pad: var(--space-6);
+    --card-gap: var(--space-4);
+    --stack-gap: var(--space-5);
+    --card-width: 27rem;
+    --btn-h: 3rem;
+    --btn-h-sm: 2.6875rem;
+
+    --scroller-gap: var(--card-gap);
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --design-width: 768;
+    --canvas-width: 48rem;
+  }
+
+  html {
+    font-size: calc(100vw / var(--design-width) * 16);
+  }
+}
+
+@media (min-width: 992px) {
+  :root {
+    --design-width: 991;
+    --canvas-width: 61.9375rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --design-width: 1440;
+    --canvas-width: 90rem;
+  }
+}
+
+/* ≥ 1920px: frozen at the 1920px size; content stays centered inside --canvas-width. */
+@media (min-width: 1920px) {
+  html {
+    font-size: calc(1920px / 1440 * 16);
+  }
+}

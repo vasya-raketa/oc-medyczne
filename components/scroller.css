@@ -1,0 +1,32 @@
+/*
+  Horizontal swipe row: native overflow scroll with snapping, hidden scrollbar.
+  The row bleeds past the section padding (--scroller-bleed) so the next item
+  peeks at the screen edge. Components switch it off at wider breakpoints by
+  overriding display/margin/padding/overflow.
+*/
+
+.scroller {
+  display: flex;
+  gap: var(--scroller-gap, 1rem);
+  margin-inline: calc(var(--scroller-bleed, var(--section-padding-x)) * -1);
+  padding-inline: var(--scroller-bleed, var(--section-padding-x));
+  scroll-padding-inline: var(--scroller-bleed, var(--section-padding-x));
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.scroller > * {
+  flex: 0 0 var(--scroller-item-width, 100%);
+  scroll-snap-align: start;
+}
+
+.scroller:focus-visible {
+  outline: 0.125rem solid var(--blue);
+  outline-offset: 0.1875rem;
+}

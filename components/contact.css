@@ -1,0 +1,1001 @@
+/*
+  Contact section + footer (#kontakt). Plain rem per range, copied from the frame
+  that owns it (scale.css): ≤479 the 390 frame, 480–767 the 480 frame,
+  768–991 the 768 frame, 992–1439 the 991 frame, ≥1440 the 1440 frame.
+  Label-relative sizes (asterisk, input text) are in em.
+*/
+
+.contact {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(183.3deg, var(--blue) 29.817%, var(--blue-bright) 99.007%);
+  color: var(--white);
+}
+
+.footer-bg {
+  position: absolute;
+  left: -27.375rem;
+  top: calc(50% + 14.9163rem);
+  width: 144.75rem;
+  height: 90.5rem;
+  max-width: none;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.contact-inner {
+  position: relative;
+  max-width: var(--canvas-width);
+  margin: 0 auto;
+  padding: 1.875rem var(--section-padding-x);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact-layout,
+.contact-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-title {
+  max-width: none;
+  padding: 0;
+  color: var(--white);
+  line-height: 1.1;
+}
+
+@media (max-width: 479.98px) {
+  .section-title.contact-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 479.98px) {
+  .contact-title br {
+    display: none;
+  }
+}
+
+.contact-lead {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Contact person */
+
+.agent-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 1.25rem;
+  border: 0.0938rem solid var(--white-12);
+  border-radius: var(--radius-md);
+  background: var(--white-10);
+  box-shadow: 0 0.5rem 6.25rem var(--blue-glow);
+  backdrop-filter: blur(0.9375rem);
+}
+
+.agent-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.agent-prompt {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.agent-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar-ring {
+  width: 4rem;
+  height: 4rem;
+  flex-shrink: 0;
+  border-radius: var(--radius-pill);
+  background: var(--gradient-avatar);
+  overflow: hidden;
+}
+
+.avatar-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.agent-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3125rem;
+}
+
+.agent-name {
+  font-size: 1.75rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.agent-role {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* width: 0 keeps the SVG's own width out of the card's content-sized width. */
+.rule {
+  width: 0;
+  min-width: 100%;
+  height: 1px;
+}
+
+.agent-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3125rem;
+}
+
+.agent-links li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.agent-links a {
+  font-size: 1.25rem;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+
+.agent-links a:focus-visible,
+.legal-bar a:focus-visible {
+  outline: 0.125rem solid var(--white);
+  outline-offset: 0.125rem;
+}
+
+.icon-slot {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-slot img {
+  width: 100%;
+  height: 100%;
+}
+
+.icon-slot .icon-phone {
+  width: 87.5%;
+  height: 87.5%;
+}
+
+/* Form */
+
+/* Positioned so it paints above the agent card's shadow (backdrop-filter lifts the card). */
+.form-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 1.5rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: var(--white);
+  color: var(--ink);
+}
+
+.form-grid,
+.form-tail {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.field-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.field-question {
+  gap: 0.5rem;
+}
+
+.field i {
+  margin-left: 0.25em;
+  color: var(--danger);
+  font-family: var(--font-ui);
+  font-size: 0.8125em;
+  font-style: normal;
+  letter-spacing: 0;
+  vertical-align: top;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: 1px solid var(--blue-10);
+  border-radius: var(--radius-sm);
+  background: var(--pill);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 0.875em;
+  font-weight: 400;
+  letter-spacing: 0;
+  outline: none;
+}
+
+.field input {
+  height: max(2.75rem, 44px);
+  padding: 0 1rem;
+}
+
+.field textarea {
+  height: 5rem;
+  padding: 0.75rem 1rem;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--blue);
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 0.125rem solid var(--blue);
+  outline-offset: 0.0625rem;
+}
+
+.field [aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.field [aria-invalid="true"]:focus-visible {
+  outline-color: var(--danger);
+}
+
+.form-actions {
+  --btn-height: max(3.375rem, 44px);
+  --btn-padding-x: 2rem;
+  --btn-font-size: 1.25rem;
+  --btn-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-actions .btn:focus-visible {
+  outline: 0.125rem solid var(--blue);
+  outline-offset: 0.125rem;
+}
+
+.hours {
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.3125rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.consent input {
+  appearance: none;
+  width: 1.375rem;
+  height: 1.375rem;
+  margin: 0.0625rem -0.0625rem 0;
+  flex-shrink: 0;
+  border: 1px solid var(--blue-10);
+  border-radius: var(--radius-xs);
+  background: var(--pill);
+  cursor: pointer;
+}
+
+.consent input:checked {
+  border-color: var(--blue);
+  background: var(--blue)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / 0.875rem no-repeat;
+}
+
+.consent input:focus-visible {
+  outline: 0.125rem solid var(--blue);
+  outline-offset: 0.125rem;
+}
+
+.consent input[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.legal {
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.legal a {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.legal a:focus-visible {
+  outline: 0.125rem solid var(--blue);
+  outline-offset: 0.125rem;
+}
+
+/* Live regions stay in the DOM (so updates are announced) and collapse while empty. */
+.form-success {
+  padding: 0.75em 1em;
+  border: 1px solid var(--blue-10);
+  border-radius: var(--radius-sm);
+  background: var(--pill);
+  color: var(--blue);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.form-success:focus {
+  outline: 0.125rem solid var(--blue);
+  outline-offset: 0.125rem;
+}
+
+.form-success:empty,
+.form-error:empty {
+  display: none;
+}
+
+.form-error,
+.field-error {
+  color: var(--danger);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.consent-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-trap {
+  position: absolute;
+  left: -100vw;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-card[aria-busy="true"] .btn {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.legal-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9375rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+/* 480–767: 480 frame, sizes from the scale.css tokens. */
+@media (min-width: 480px) and (max-width: 767.98px) {
+  .contact {
+    background: linear-gradient(183.49deg, var(--blue) 29.817%, var(--blue-bright) 99.007%);
+  }
+
+  .contact-inner {
+    gap: var(--section-gap);
+    padding: var(--section-y) var(--section-padding-x) var(--section-gap);
+  }
+
+  .contact-layout,
+  .contact-aside {
+    gap: var(--stack-gap);
+  }
+
+  .contact-intro {
+    gap: var(--space-3);
+  }
+
+  .contact-lead {
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+  }
+
+  .agent-card {
+    gap: var(--space-2-5);
+    padding: var(--card-pad);
+  }
+
+  .agent-head,
+  .agent-profile,
+  .agent-links {
+    gap: var(--space-3);
+  }
+
+  .agent-prompt {
+    font-size: var(--text-small);
+    line-height: var(--leading-body);
+  }
+
+  .avatar-ring {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  .agent-text,
+  .agent-links li {
+    gap: var(--space-2);
+  }
+
+  .agent-name {
+    font-size: var(--text-card-title);
+    font-weight: 600;
+    line-height: var(--leading-body);
+  }
+
+  .agent-role,
+  .agent-links a {
+    font-size: var(--text-body-lg);
+    line-height: var(--leading-body);
+  }
+
+  .form-card {
+    gap: var(--space-4);
+    padding: var(--card-pad);
+  }
+
+  .form-grid,
+  .form-tail {
+    gap: var(--space-4);
+  }
+
+  .field-row {
+    gap: var(--space-5);
+  }
+
+  .field {
+    gap: var(--space-1-5);
+    font-size: var(--text-small);
+  }
+
+  .field-question {
+    gap: var(--space-2);
+  }
+
+  .field input {
+    padding: 0 var(--space-4);
+  }
+
+  .field textarea {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .form-actions {
+    --btn-height: var(--btn-h);
+    --btn-padding-x: var(--space-8);
+    --btn-font-size: var(--text-btn);
+    gap: var(--space-3);
+  }
+
+  .hours {
+    font-size: var(--text-caption);
+    line-height: var(--leading-relaxed);
+  }
+
+  .consent {
+    gap: var(--space-3);
+    font-size: var(--text-small);
+    line-height: var(--leading-relaxed);
+  }
+
+  .legal {
+    font-size: var(--text-caption);
+    line-height: var(--leading-body);
+  }
+
+  .form-success {
+    font-size: var(--text-small);
+  }
+
+  .form-error,
+  .field-error {
+    font-size: var(--text-caption);
+  }
+
+  .legal-bar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3) var(--space-6);
+    font-size: var(--text-body);
+  }
+}
+
+/* Shared base for ≥768 (the frame blocks below override most of it). */
+@media (min-width: 768px) {
+  .contact {
+    background: linear-gradient(183.49deg, var(--blue) 29.817%, var(--blue-bright) 99.007%);
+  }
+
+  .contact-inner {
+    padding: 3.75rem var(--section-padding-x) 2.5rem;
+    gap: 2.5rem;
+  }
+
+  .contact-lead {
+    font-size: 1.125rem;
+  }
+
+  .agent-card {
+    padding: 1.5rem;
+  }
+
+  .agent-prompt {
+    font-size: 1rem;
+  }
+
+  .avatar-ring {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  .agent-text {
+    gap: 0.5rem;
+  }
+
+  .agent-name {
+    font-weight: 600;
+  }
+
+  .agent-links {
+    gap: 0.75rem;
+  }
+
+  .form-card {
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .field {
+    font-size: 1rem;
+  }
+
+  .form-actions {
+    --btn-height: 3rem;
+    --btn-font-size: 1.125rem;
+  }
+
+  .consent {
+    gap: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .legal-bar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+  }
+}
+
+/* 768–991: 768 frame. Intro and contact card side by side above a two-column form. */
+@media (min-width: 768px) {
+  .contact {
+    background: linear-gradient(181.19deg, var(--blue) 29.817%, var(--blue-bright) 99.007%);
+  }
+
+  .footer-bg {
+    left: -21.215rem;
+    top: calc(50% + 11.5638rem);
+    width: 112.1776rem;
+    height: 70.1352rem;
+  }
+
+  .contact-inner {
+    padding: 2.9063rem 2.9063rem 1.9375rem;
+    gap: 1.9375rem;
+  }
+
+  .contact-layout {
+    gap: 0.9688rem;
+  }
+
+  .contact-aside {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+
+  .contact-intro {
+    max-width: 17.7275rem;
+    gap: 1.1625rem;
+  }
+
+  .contact-lead {
+    font-size: 0.9688rem;
+  }
+
+  .agent-card {
+    flex: none;
+    gap: 0.4844rem;
+    border-width: 0.0726rem;
+    border-radius: calc(var(--radius-lg) * 0.775);
+    box-shadow: 0 0.3875rem 4.8438rem var(--blue-glow);
+    backdrop-filter: blur(0.7266rem);
+  }
+
+  .agent-head,
+  .agent-profile,
+  .agent-links {
+    gap: 0.5813rem;
+  }
+
+  .agent-prompt {
+    font-size: 0.775rem;
+  }
+
+  .avatar-ring {
+    width: 3.4875rem;
+    height: 3.4875rem;
+  }
+
+  .agent-text,
+  .agent-links li {
+    gap: 0.3875rem;
+  }
+
+  .agent-name {
+    font-size: 1.3563rem;
+  }
+
+  .agent-role,
+  .agent-links a {
+    font-size: 0.9688rem;
+  }
+
+  .icon-slot {
+    width: 1.3563rem;
+    height: 1.3563rem;
+  }
+
+  .form-card {
+    gap: 0.775rem;
+    border-radius: calc(var(--radius-lg) * 0.775);
+  }
+
+  .form-grid,
+  .form-tail {
+    gap: 0.775rem;
+  }
+
+  .field-row {
+    flex-direction: row;
+    gap: 0.9688rem;
+  }
+
+  .field {
+    gap: 0.2906rem;
+    font-size: 0.775rem;
+  }
+
+  .field-question {
+    gap: 0.3875rem;
+  }
+
+  .field input {
+    height: 2.1312rem;
+    padding: 0 0.775rem;
+  }
+
+  .field input,
+  .field textarea {
+    border-radius: calc(var(--radius-sm) * 0.775);
+  }
+
+  .field textarea {
+    height: 3.875rem;
+    padding: 0.5813rem 0.775rem;
+  }
+
+  .form-actions {
+    --btn-height: 2.325rem;
+    --btn-padding-x: 1.55rem;
+    --btn-font-size: 0.8719rem;
+    align-items: flex-end;
+    gap: 0.5813rem;
+  }
+
+  .hours,
+  .legal,
+  .form-error,
+  .field-error {
+    font-size: 0.6781rem;
+  }
+
+  .consent {
+    gap: 0.5813rem;
+    font-size: 0.775rem;
+  }
+
+  .consent input {
+    width: 1.0656rem;
+    height: 1.0656rem;
+    border-radius: calc(var(--radius-xs) * 0.775);
+  }
+
+  .consent input:checked {
+    background-size: 0.6781rem;
+  }
+
+  .form-success {
+    font-size: 0.775rem;
+  }
+
+  .legal-bar {
+    flex-wrap: nowrap;
+    font-size: 0.8719rem;
+  }
+}
+
+/* 992–1439: 991 frame. */
+@media (min-width: 992px) {
+  .contact {
+    background: linear-gradient(181.2deg, var(--blue) 29.817%, var(--blue-bright) 99.007%);
+  }
+
+  .footer-bg {
+    left: -27.375rem;
+    top: calc(50% + 14.9475rem);
+    width: 144.75rem;
+    height: 90.5rem;
+  }
+
+  .contact-inner {
+    padding: 3.75rem 3.75rem 2.5rem;
+    gap: 2.5rem;
+  }
+
+  .contact-layout {
+    gap: 1.25rem;
+  }
+
+  .contact-intro {
+    max-width: 22.875rem;
+    gap: 1.5rem;
+  }
+
+  .contact-lead {
+    font-size: 1.25rem;
+  }
+
+  .agent-card {
+    gap: 0.625rem;
+    border-width: 0.0938rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 0.5rem 6.25rem var(--blue-glow);
+    backdrop-filter: blur(0.9375rem);
+  }
+
+  .agent-head,
+  .agent-profile,
+  .agent-links {
+    gap: 0.75rem;
+  }
+
+  .agent-prompt {
+    font-size: 1rem;
+  }
+
+  .avatar-ring {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  .agent-text,
+  .agent-links li {
+    gap: 0.5rem;
+  }
+
+  .agent-name {
+    font-size: 1.75rem;
+  }
+
+  .agent-role,
+  .agent-links a {
+    font-size: 1.25rem;
+  }
+
+  .icon-slot {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .form-card {
+    gap: 1rem;
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .form-grid,
+  .form-tail {
+    gap: 1rem;
+  }
+
+  .field-row {
+    gap: 1.25rem;
+  }
+
+  .field {
+    gap: 0.375rem;
+    font-size: 1rem;
+  }
+
+  .field-question {
+    gap: 0.5rem;
+  }
+
+  .field input {
+    height: 2.75rem;
+    padding: 0 1rem;
+  }
+
+  .field input,
+  .field textarea {
+    border-radius: var(--radius-sm);
+  }
+
+  .field textarea {
+    height: 5rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .form-actions {
+    --btn-height: 3rem;
+    --btn-padding-x: 2rem;
+    --btn-font-size: 1.125rem;
+    gap: 0.75rem;
+  }
+
+  .hours,
+  .legal,
+  .form-error,
+  .field-error {
+    font-size: 0.875rem;
+  }
+
+  .consent {
+    gap: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .consent input {
+    width: 1.375rem;
+    height: 1.375rem;
+    border-radius: var(--radius-xs);
+  }
+
+  .consent input:checked {
+    background-size: 0.875rem;
+  }
+
+  .form-success {
+    font-size: 1rem;
+  }
+
+  .legal-bar {
+    font-size: 1.125rem;
+  }
+}
+
+/* ≥ 1440: 1440 frame. Intro and contact card stacked left of the form. */
+@media (min-width: 1440px) {
+  .contact {
+    background: linear-gradient(172.56deg, var(--blue) 13.28%, var(--blue-bright) 90.33%);
+  }
+
+  .footer-bg {
+    left: 50%;
+    top: calc(50% + 0.0306rem);
+    width: 90rem;
+    height: 56.25rem;
+    transform: translate(-50%, -50%);
+  }
+
+  .contact-inner {
+    padding: 3.75rem 5rem 2.5rem;
+  }
+
+  .contact-layout {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 2.5rem;
+  }
+
+  .contact-aside {
+    flex: 1;
+    min-width: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2.5rem;
+  }
+
+  .contact-intro {
+    max-width: none;
+  }
+
+  .contact-lead {
+    max-width: 33.3125rem;
+    font-size: 1.5rem;
+  }
+
+  .agent-card,
+  .agent-head {
+    gap: 2rem;
+  }
+
+  .agent-card {
+    padding: 2.5rem;
+  }
+
+  .agent-prompt,
+  .agent-links a {
+    font-size: 1.5rem;
+  }
+
+  .agent-links {
+    gap: 1rem;
+  }
+
+  .form-card {
+    width: 43.9375rem;
+    flex-shrink: 0;
+  }
+}

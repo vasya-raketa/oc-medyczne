@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ubezpieczenie OC dla lekarzy | RkRisk</title>
+    <meta
+      name="description"
+      content="Obowiązkowe i nadwyżkowe OC medyczne dla lekarzy i innych zawodów medycznych. Multiagencja RkRisk."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Asta+Sans:wght@600&family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/tokens.css" />
+    <link rel="stylesheet" href="styles/scale.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="components/button.css" />
+    <link rel="stylesheet" href="components/badge.css" />
+    <link rel="stylesheet" href="components/header.css" />
+    <link rel="stylesheet" href="components/ticker.css" />
+    <link rel="stylesheet" href="components/hero.css" />
+    <link rel="stylesheet" href="components/section-title.css" />
+    <link rel="stylesheet" href="components/card.css" />
+    <link rel="stylesheet" href="components/scroller.css" />
+    <link rel="stylesheet" href="components/benefits.css" />
+    <link rel="stylesheet" href="components/pricing-table.css" />
+    <link rel="stylesheet" href="components/price-card.css" />
+    <link rel="stylesheet" href="components/pricing.css" />
+    <link rel="stylesheet" href="components/coop.css" />
+    <link rel="stylesheet" href="components/contact.css" />
+  </head>
+  <body>
+    <section class="hero" id="top">
+      <div class="hero-canvas">
+        <picture>
+          <source
+            media="(min-width: 768px) and (max-width: 991.98px)"
+            srcset="assets/hero-bg-tablet.svg"
+          />
+          <img class="hero-bg" src="assets/hero-bg.svg" alt="" />
+        </picture>
+        <img
+          class="hero-doctor"
+          src="assets/doctor.png"
+          alt="Lekarka w białym fartuchu ze stetoskopem"
+        />
+
+        <header class="site-header">
+          <a class="logo-link" href="#top">
+            <img class="logo" src="assets/logo.png" alt="RkRisk Multiagencja" />
+          </a>
+          <nav class="site-nav" aria-label="Sekcje strony">
+            <a href="#korzysci">Co zyskujesz?</a>
+            <a href="#ceny">Ile to kosztuje?</a>
+            <a href="#kontakt">Kontakt</a>
+          </nav>
+          <a class="btn btn-nav" href="#ceny">Oferta</a>
+        </header>
+
+        <div class="hero-copy">
+          <div class="hero-text">
+            <div class="hero-titles">
+              <p class="badge">OC medyczne obowiązkowe i nadwyżkowe</p>
+              <h1>Ubezpieczenie<br />dla lekarzy</h1>
+            </div>
+            <p class="hero-lead">
+              Ochrona Cywilna dla lekarzy<br />i innych zawodów medycznych
+            </p>
+          </div>
+          <a class="btn btn-xl" href="#ceny">Sprawdź ofertę</a>
+        </div>
+      </div>
+
+      <div class="ticker" aria-label="Zawody medyczne">
+        <img class="ticker-wave" src="assets/ticker-wave.svg" alt="" />
+        <div class="ticker-track">
+          <ul class="ticker-row">
+            <li>Dentysty</li>
+            <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
+            <li>Pielęgniarki</li>
+            <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
+            <li>Położne</li>
+            <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
+            <li>Fizjoterapeuci</li>
+            <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
+            <li>Diagnostycy</li>
+            <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
+            <li>Ratownicy medyczni</li>
+            <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
+            <li>Rehabilitanci</li>
+            <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
+            <li>Opiekunowie medyczni</li>
+            <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section class="benefits-section" id="korzysci" aria-labelledby="korzysci-title">
+        <h2 class="section-title" id="korzysci-title">Co daje nadwyżkowe ubezpieczenie OC?</h2>
+        <div class="benefits" data-benefits>
+          <div
+            class="benefits-tabs"
+            role="tablist"
+            aria-orientation="vertical"
+            aria-labelledby="korzysci-title"
+          ></div>
+          <div class="benefits-cards scroller"></div>
+        </div>
+      </section>
+
+      <section class="pricing-section" id="ceny" aria-labelledby="ceny-title">
+        <h2 class="section-title section-title-wide" id="ceny-title">
+          Wysokie sumy ubezpieczenia w&nbsp;rozsądnej cenie
+        </h2>
+        <div class="pricing" data-pricing></div>
+      </section>
+
+      <section class="coop-section" id="wspolpraca" aria-labelledby="wspolpraca-title">
+        <h2 class="section-title section-title-lines" id="wspolpraca-title">
+          Jak wygląda współpraca<br />z Multiagencją RkRisk
+        </h2>
+        <div class="coop">
+          <div class="coop-head">
+            <p class="coop-intro">
+              <span>Jesteśmy tu po to, by ci pomóc zadbać o własne bezpieczeństwo.</span>
+              <span>Codziennie podejmujesz decyzje, za które bierzesz zawodową odpowiedzialność.</span>
+              <span>Tym razem postaw na siebie!</span>
+            </p>
+            <a class="btn btn-block" href="#kontakt">Sprawdź nas</a>
+          </div>
+          <ol class="steps scroller" data-steps></ol>
+        </div>
+      </section>
+    </main>
+
+    <footer class="contact" id="kontakt">
+      <picture>
+        <source media="(min-width: 1440px)" srcset="assets/footer-bg.svg" />
+        <img class="footer-bg" src="assets/footer-bg-compact.svg" alt="" />
+      </picture>
+      <div class="contact-inner">
+        <div class="contact-layout">
+          <div class="contact-aside">
+            <div class="contact-intro">
+              <h2 class="section-title contact-title">Porozmawiajmy <br />o Twoim OC</h2>
+              <p class="contact-lead">Zostaw kontakt, wspólnie sprawdzimy, jaka ochrona będzie dla Ciebie najlepsza.</p>
+            </div>
+            <article class="agent-card">
+              <div class="agent-head">
+                <p class="agent-prompt">Wolisz skontaktować się bezpośrednio?</p>
+                <div class="agent-profile">
+                  <div class="avatar-ring">
+                    <img src="assets/avatar.png" alt="Beata Szychta" />
+                  </div>
+                  <div class="agent-text">
+                    <p class="agent-name">Beata Szychta</p>
+                    <p class="agent-role">Specjalistka ds. Ubezpieczeń</p>
+                  </div>
+                </div>
+              </div>
+              <img class="rule" src="assets/line.svg" alt="" />
+              <ul class="agent-links">
+                <li>
+                  <span class="icon-slot"><img class="icon-phone" src="assets/phone.svg" alt="" /></span>
+                  <a href="tel:+48880176777">+48 880 176 777</a>
+                </li>
+                <li>
+                  <span class="icon-slot"><img src="assets/mail.svg" alt="" /></span>
+                  <a href="mailto:beata.szychta@rkrisk.pl">beata.szychta@rkrisk.pl</a>
+                </li>
+              </ul>
+            </article>
+          </div>
+
+          <form class="form-card" id="offer-form" action="api/send.php" method="post" novalidate>
+            <p class="form-success" id="form-success" role="status" aria-live="polite" tabindex="-1"></p>
+            <div class="form-grid">
+              <div class="field-row">
+                <div class="field">
+                  <label for="f-name">Imię <i aria-hidden="true">*</i></label>
+                  <input id="f-name" type="text" name="name" autocomplete="name" maxlength="100" required aria-describedby="f-name-error" />
+                  <p class="field-error" id="f-name-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label for="f-email">E-mail <i aria-hidden="true">*</i></label>
+                  <input id="f-email" type="email" name="email" autocomplete="email" maxlength="254" required aria-describedby="f-email-error" />
+                  <p class="field-error" id="f-email-error" hidden></p>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="f-phone">Telefon <i aria-hidden="true">*</i></label>
+                  <input id="f-phone" type="tel" name="phone" autocomplete="tel" maxlength="30" required aria-describedby="f-phone-error" />
+                  <p class="field-error" id="f-phone-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label for="f-profession">Zawód / specjalizacja</label>
+                  <input id="f-profession" type="text" name="profession" autocomplete="organization-title" maxlength="150" aria-describedby="f-profession-error" />
+                  <p class="field-error" id="f-profession-error" hidden></p>
+                </div>
+              </div>
+              <div class="form-tail">
+                <div class="field field-question">
+                  <label for="f-question">Czy masz jakieś pytanie?</label>
+                  <textarea id="f-question" name="question" rows="3" maxlength="3000" aria-describedby="f-question-error"></textarea>
+                  <p class="field-error" id="f-question-error" hidden></p>
+                </div>
+                <div class="form-actions">
+                  <button class="btn btn-block" type="submit">Wyślij</button>
+                  <p class="form-error" id="form-error" role="alert"></p>
+                  <p class="hours">Oddzwonimy do Ciebie w dni robocze w godzinach 8:00–16:00.</p>
+                </div>
+                <div class="consent-field">
+                  <label class="consent">
+                    <input id="f-consent" type="checkbox" name="consent" value="on" required aria-describedby="f-consent-error" />
+                    <span>Wyrażam zgodę na kontakt telefoniczny i/lub e-mailowy przez RkRisk Sp. z o.o. w celu przedstawienia informacji i oferty ubezpieczeniowej w odpowiedzi na moje zapytanie.</span>
+                  </label>
+                  <p class="field-error" id="f-consent-error" hidden></p>
+                </div>
+              </div>
+            </div>
+            <div class="form-trap" aria-hidden="true">
+              <label>Strona internetowa <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+            </div>
+            <input type="hidden" name="ts" />
+            <img class="rule" src="assets/line-light.svg" alt="" />
+            <p class="legal">
+              Administratorem danych osobowych jest RkRisk Sp. z o.o. z siedzibą we Wrocławiu. Dane podane w formularzu będą przetwarzane w celu obsługi zapytania i kontaktu w sprawie oferty ubezpieczeniowej. Więcej informacji o przetwarzaniu danych znajdziesz w
+              <a href="https://example.com/privacy" target="_blank" rel="noreferrer">Polityce Prywatności</a>.
+            </p>
+          </form>
+        </div>
+
+        <div class="legal-bar">
+          <p>© 2026 RkRisk Wszelkie prawa zastrzeżone.</p>
+          <a href="https://example.com/privacy" target="_blank" rel="noreferrer">Polityka prywatnośći</a>
+        </div>
+      </div>
+    </footer>
+    <script src="components/ticker.js"></script>
+    <script src="components/scroller.js"></script>
+    <script src="components/benefits.js"></script>
+    <script src="components/pricing-table.js"></script>
+    <script src="components/price-card.js"></script>
+    <script src="components/pricing.js"></script>
+    <script src="components/coop.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

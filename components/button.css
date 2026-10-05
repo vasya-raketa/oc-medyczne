@@ -1,0 +1,38 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--blue);
+  color: var(--white);
+  cursor: pointer;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* Sized buttons: the surrounding component sets these properties per breakpoint. */
+.btn-nav,
+.btn-xl,
+.btn-block {
+  height: var(--btn-height, auto);
+  padding: var(--btn-padding-y, 0) var(--btn-padding-x);
+  font-family: var(--btn-font-family, inherit);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, -0.02em);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-light {
+  background: var(--white);
+  color: var(--ink);
+}

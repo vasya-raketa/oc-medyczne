@@ -1,0 +1,318 @@
+/*
+  ≤767 (Frames C/D): every row becomes a stacked block, labels come from data-label.
+  ≥768 (Frames A/B): a regular table. Rem values are 991-frame px / 16, scaled by --k.
+*/
+
+.pricing-table {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  outline: 1px solid var(--line);
+  outline-offset: -1px;
+  background: var(--white);
+}
+
+.pricing-table :is(table, thead, tbody, tr, th, td) {
+  display: block;
+}
+
+.pricing-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pricing-table thead {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.pricing-table tbody tr {
+  padding: 1rem 1.7143rem;
+  box-shadow: inset 0 -1px var(--line);
+}
+
+.pricing-table tbody tr:first-child {
+  padding-top: 1.5rem;
+}
+
+.pricing-table tbody tr:last-child {
+  padding-bottom: 1.5rem;
+  box-shadow: none;
+}
+
+.pricing-table tbody :is(th, td) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0;
+  color: var(--ink);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.pricing-table tbody :is(th, td)::before {
+  content: attr(data-label);
+  color: var(--muted);
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.375rem;
+}
+
+.pricing-table tbody td {
+  padding-top: 1rem;
+}
+
+.pricing-table strong {
+  font-weight: 600;
+}
+
+.pricing-table tbody .is-price {
+  align-items: flex-end;
+  color: var(--blue);
+  font-weight: 600;
+  text-align: right;
+}
+
+.pricing-table-base tbody tr {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 1rem;
+  padding-top: 1.5rem;
+}
+
+.pricing-table-base tbody .is-price {
+  grid-area: 1 / 2;
+  padding-top: 0;
+}
+
+.pricing-table-base tbody .is-sum {
+  grid-column: 1 / -1;
+}
+
+.pricing-sum {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+}
+
+.pricing-sum span {
+  color: var(--muted);
+}
+
+.pricing-table-extras tbody td {
+  color: var(--muted);
+}
+
+.pricing-tagged {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(0.25rem * var(--k));
+}
+
+.pricing-tagged .badge {
+  --badge-padding: calc(0.3125rem * var(--k)) calc(0.5rem * var(--k)) calc(0.4375rem * var(--k));
+  --badge-font-size: calc(0.75rem * var(--k));
+  --badge-line-height: calc(0.5625rem * var(--k));
+  letter-spacing: 0;
+}
+
+/* 480–767 (480 frame): token sizes, values without tracking, extras limits in ink at regular weight. */
+@media (min-width: 480px) and (max-width: 767.98px) {
+  .pricing-table tbody tr {
+    padding: var(--space-4) var(--card-pad);
+  }
+
+  .pricing-table tbody tr:first-child,
+  .pricing-table-base tbody tr {
+    padding-top: var(--card-pad);
+  }
+
+  .pricing-table tbody tr:last-child {
+    padding-bottom: var(--card-pad);
+  }
+
+  .pricing-table-base tbody tr {
+    column-gap: var(--space-4);
+  }
+
+  .pricing-table tbody :is(th, td) {
+    gap: var(--space-3);
+    font-size: var(--text-body-lg);
+    line-height: var(--leading-body);
+  }
+
+  .pricing-table tbody :is(th, td)::before {
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+  }
+
+  .pricing-table tbody td {
+    padding-top: var(--space-4);
+  }
+
+  .pricing-table-base tbody .is-price {
+    padding-top: 0;
+  }
+
+  .pricing-sum {
+    gap: var(--space-1) var(--space-6);
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+  }
+
+  .pricing-tagged {
+    gap: var(--space-1);
+  }
+
+  .pricing-tagged .badge {
+    --badge-padding: var(--space-1-5) var(--space-2);
+    --badge-font-size: var(--text-micro);
+  }
+
+  .pricing-table tbody :is(th, td),
+  .pricing-sum strong {
+    letter-spacing: 0;
+  }
+
+  .pricing-table tbody :is(th, td)::before,
+  .pricing-sum span {
+    letter-spacing: -0.02em;
+  }
+
+  .pricing-table-extras tbody td {
+    color: var(--ink);
+  }
+
+  .pricing-table-extras strong {
+    font-weight: inherit;
+  }
+}
+
+@media (min-width: 768px) {
+  .pricing-table {
+    border-radius: calc(var(--radius-lg) * var(--k));
+  }
+
+  .pricing-table table {
+    display: table;
+    table-layout: fixed;
+  }
+
+  .pricing-table thead {
+    position: static;
+    display: table-header-group;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+  }
+
+  .pricing-table tbody {
+    display: table-row-group;
+  }
+
+  .pricing-table tr,
+  .pricing-table-base tbody tr {
+    display: table-row;
+    padding: 0;
+  }
+
+  .pricing-table :is(th, td),
+  .pricing-table tbody :is(th, td) {
+    display: table-cell;
+    padding: calc(1.4288rem * var(--k)) calc(1.7144rem * var(--k));
+    box-shadow: inset 0 -1px var(--line);
+    vertical-align: middle;
+  }
+
+  .pricing-table tbody tr,
+  .pricing-table tbody tr:last-child :is(th, td) {
+    box-shadow: none;
+  }
+
+  .pricing-table-base tbody .is-price {
+    padding-top: calc(1.4288rem * var(--k));
+  }
+
+  .pricing-table tbody :is(th, td)::before {
+    content: none;
+  }
+
+  .pricing-table thead th {
+    padding-block: calc(1.1431rem * var(--k));
+    background: var(--table-head);
+    color: var(--muted);
+    font-size: calc(1.125rem * var(--k));
+    font-weight: 500;
+    line-height: calc(1.375rem * var(--k));
+    letter-spacing: -0.02em;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .pricing-table tbody :is(th, td) {
+    font-size: calc(1.25rem * var(--k));
+    line-height: calc(1.5rem * var(--k));
+  }
+
+  .pricing-table .is-price {
+    text-align: right;
+  }
+
+  .pricing-table-base th:first-child {
+    width: calc(21.6069rem * var(--k));
+  }
+
+  .pricing-table-base th:nth-child(2) {
+    width: calc(20rem * var(--k));
+  }
+
+  .pricing-sum {
+    display: block;
+    font-size: calc(1.125rem * var(--k));
+    line-height: calc(1.375rem * var(--k));
+  }
+
+  .pricing-sum strong,
+  .pricing-sum span {
+    display: block;
+  }
+
+  .pricing-sum span {
+    margin-top: calc(0.2856rem * var(--k));
+    font-size: calc(1rem * var(--k));
+    line-height: calc(1.25rem * var(--k));
+  }
+
+  .pricing-table-extras th:first-child {
+    width: calc(21.1431rem * var(--k));
+  }
+
+  .pricing-table-extras tbody :is(th, td) {
+    padding-block: calc(1.1431rem * var(--k));
+    vertical-align: top;
+  }
+
+  .pricing-table-extras tbody th {
+    padding-right: calc(2.1875rem * var(--k));
+  }
+
+  .pricing-table-extras tbody td {
+    font-size: calc(1.125rem * var(--k));
+    line-height: calc(1.375rem * var(--k));
+  }
+
+  .pricing-tagged {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,33 @@
+:root {
+  --blue: #1741b3;
+  --ink: #15154a;
+  --muted: #626d90;
+  --page: #f7f7f7;
+  --pill: #f5f8ff;
+  --soft: #ddebff;
+  --purple: #6146c3;
+  --line: #e2e8f0;
+  --white: #fff;
+  --white-70: rgb(255 255 255 / 0.7);
+  --white-12: rgb(255 255 255 / 0.12);
+  --white-10: rgb(255 255 255 / 0.1);
+  --blue-bright: #145fdf;
+  --blue-10: rgb(23 65 179 / 0.1);
+  --blue-glow: rgb(23 67 181 / 0.5);
+  --danger: #ef4444;
+  --table-head: rgb(15 93 224 / 0.05);
+
+  --gradient-blue: linear-gradient(180deg, #096efd 0%, #21227f 100%);
+  --gradient-purple: linear-gradient(180deg, #7651d9 0%, #21227f 100%);
+  --gradient-avatar: linear-gradient(90deg, #89a6ff, #bacdff);
+
+  --font-sans: "Instrument Sans", sans-serif;
+  --font-display: "Asta Sans", sans-serif;
+  --font-ui: Inter, sans-serif;
+
+  --radius-pill: 100vmax;
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 1.5rem;
+  --radius-lg: 2.25rem;
+}

@@ -1,0 +1,8 @@
+.card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: var(--card-padding, 2.5rem);
+  border-radius: var(--card-radius, var(--radius-lg));
+  background: var(--white);
+}

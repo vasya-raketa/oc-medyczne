@@ -1,0 +1,66 @@
+/*
+  ≤479: 480-frame sizes. 480–767: the scale.css tokens. ≥768: the 991-frame title,
+  768 by 0.775, ≥992 at 1.
+*/
+
+.section-title {
+  --section-title-width: 23.6875rem;
+  max-width: var(--section-title-width);
+  padding: 0;
+  color: var(--blue);
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.section-title-wide {
+  --section-title-width: 24.9375rem;
+}
+
+@media (min-width: 480px) and (max-width: 767.98px) {
+  .section-title {
+    font-size: var(--text-title);
+    line-height: var(--leading-tight);
+  }
+
+  .section-title-wide {
+    --section-title-width: 24.6875rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    --section-title-width: 34.2rem;
+    padding-inline: 0.0969rem;
+    font-size: 2.2281rem;
+  }
+
+  .section-title-wide {
+    --section-title-width: 41.9938rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .section-title {
+    --section-title-width: 44.125rem;
+    padding-inline: 0.125rem;
+    font-size: 2.875rem;
+  }
+
+  .section-title-wide {
+    --section-title-width: 54.1875rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .section-title {
+    --section-title-width: 48.5rem;
+    font-size: 3.375rem;
+    line-height: 1.1;
+  }
+
+  .section-title-wide {
+    --section-title-width: 54.1875rem;
+  }
+}

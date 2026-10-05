@@ -1,0 +1,117 @@
+.ticker {
+  --ticker-padding-y: calc(0.75rem * var(--k-fluid));
+  --ticker-font-size: calc(1.25rem * var(--k-mobile) + 1.5rem * var(--k-desktop));
+  --ticker-gap: calc(1rem * var(--k-mobile) + 1.25rem * var(--k-desktop));
+  --ticker-icon: calc(1.5rem * var(--k-fluid));
+
+  position: relative;
+  z-index: 3;
+  display: flex;
+  overflow: hidden;
+  padding: var(--ticker-padding-y) 0;
+  background: var(--blue);
+}
+
+.ticker-wave {
+  position: absolute;
+  left: calc(50% - (31.4525rem * var(--k-mobile) + 47.4213rem * var(--k-desktop)));
+  top: calc(-20.9rem * var(--k-fluid));
+  width: calc(146.2081rem * var(--k-fluid));
+  height: calc(95.5675rem * var(--k-fluid));
+  max-width: none;
+  transform: rotate(-15deg);
+  pointer-events: none;
+}
+
+.ticker-track {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  animation: ticker var(--ticker-duration, 30s) linear infinite;
+}
+
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(calc(-1 * var(--ticker-shift, 0px)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+}
+
+/* padding-right equals the gap so the row joins its clone seamlessly. */
+.ticker-row {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: var(--ticker-gap);
+  padding-right: var(--ticker-gap);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: var(--ticker-font-size);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.ticker-row img {
+  width: var(--ticker-icon);
+  height: var(--ticker-icon);
+}
+
+@media (min-width: 480px) and (max-width: 767.98px) {
+  .ticker {
+    --ticker-padding-y: var(--space-3);
+    --ticker-font-size: var(--text-body-lg);
+    --ticker-gap: var(--space-4);
+  }
+}
+
+@media (min-width: 768px) {
+  .ticker {
+    --ticker-padding-y: 0.5812rem;
+    --ticker-font-size: 1.1625rem;
+    --ticker-gap: 0.9687rem;
+    --ticker-icon: 1.1625rem;
+  }
+
+  .ticker-wave {
+    left: calc(50% - 36.75rem);
+    top: -16.1969rem;
+    width: 113.3075rem;
+    height: 74.0625rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .ticker {
+    --ticker-padding-y: 0.75rem;
+    --ticker-font-size: 1.5rem;
+    --ticker-gap: 1.25rem;
+    --ticker-icon: 1.5rem;
+  }
+
+  .ticker-wave {
+    left: calc(50% - 47.4213rem);
+    top: -20.9rem;
+    width: 146.2081rem;
+    height: 95.5675rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .ticker {
+    --ticker-font-size: 1.75rem;
+  }
+
+  .ticker-wave {
+    left: calc(50% - 61.4525rem);
+  }
+}

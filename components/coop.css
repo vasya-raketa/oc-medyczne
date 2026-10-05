@@ -1,0 +1,218 @@
+/*
+  Same rhythm as the benefits/pricing sections. ≤767 the steps use the shared
+  .scroller row (480–767 sized by the scale.css tokens). ≥768 the tablet layout
+  (2×2 grid): --k is 0.775 on the 768 frame and 1 from 992px.
+*/
+
+.coop-section {
+  --k: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: var(--canvas-width);
+  margin-inline: auto;
+  padding: 2.25rem var(--section-padding-x) 3.75rem;
+}
+
+.section-title-lines {
+  --section-title-width: none;
+}
+
+.coop {
+  display: flex;
+  flex-direction: column;
+  gap: calc(1.5rem * var(--k));
+}
+
+.coop-head {
+  --btn-height: calc(3rem * var(--k));
+  --btn-padding-x: calc(1.5rem * var(--k));
+  --btn-font-size: calc(1.125rem * var(--k));
+  display: flex;
+  flex-direction: column;
+  gap: calc(1.5rem * var(--k));
+}
+
+.coop-intro {
+  display: flex;
+  flex-direction: column;
+  color: var(--muted);
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.step-card {
+  --card-padding: 1.5rem;
+  --card-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.step-card .badge-num {
+  --badge-num-size: calc(2.5rem * var(--k));
+  --badge-num-font-size: calc(1.25rem * var(--k));
+}
+
+.step-card-title {
+  color: var(--ink);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.step-card-text {
+  color: var(--muted);
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+/* 480–767: 480 frame. */
+@media (min-width: 480px) and (max-width: 767.98px) {
+  .coop-section {
+    gap: var(--space-6);
+    padding: var(--section-y) var(--section-padding-x);
+  }
+
+  .coop {
+    gap: var(--space-6);
+  }
+
+  .coop-head {
+    --btn-height: var(--btn-h);
+    --btn-padding-x: var(--space-6);
+    --btn-font-size: var(--text-btn);
+    --btn-weight: 600;
+    gap: var(--space-4);
+  }
+
+  .coop-intro {
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+  }
+
+  .steps {
+    --scroller-item-width: var(--card-width);
+  }
+
+  .step-card {
+    --card-padding: var(--card-pad);
+    --card-radius: var(--radius-md);
+    gap: var(--space-3);
+  }
+
+  .step-card .badge-num {
+    --badge-num-size: 1.875rem;
+    --badge-num-font-size: var(--text-body);
+  }
+
+  .step-card-title {
+    font-size: var(--text-card-title);
+    line-height: var(--leading-card-title);
+  }
+
+  .step-card-text {
+    margin-top: var(--space-1);
+    font-size: var(--text-body-lg);
+    line-height: var(--leading-body);
+  }
+}
+
+@media (min-width: 768px) {
+  .coop-section {
+    --k: 0.45;
+    gap: calc(3.75rem * var(--k));
+    padding: calc(3.75rem * var(--k)) var(--section-padding-x);
+  }
+
+  .coop-intro {
+    font-size: calc(1.25rem * var(--k));
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: calc(1.25rem * var(--k));
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .step-card {
+    --card-padding: calc(2.5rem * var(--k));
+    --card-radius: calc(var(--radius-lg) * var(--k));
+    gap: calc(1rem * var(--k));
+  }
+
+  .step-card-title {
+    font-size: calc(1.75rem * var(--k));
+  }
+
+  .step-card-text {
+    font-size: calc(1.25rem * var(--k));
+  }
+}
+
+@media (min-width: 768px) {
+  .coop-section {
+    --k: 0.775;
+    padding: calc(3.75rem * var(--k));
+  }
+}
+
+@media (min-width: 992px) {
+  .coop-section {
+    --k: 1;
+  }
+}
+
+@media (min-width: 1440px) {
+  .coop-section {
+    gap: 3.75rem;
+    padding: 5.3125rem 5rem;
+  }
+
+  .coop-head {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .coop-head .btn {
+    width: auto;
+    flex: none;
+  }
+
+  .coop-intro {
+    max-width: 56rem;
+    font-size: 1.5rem;
+  }
+
+  .steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .step-card {
+    --card-padding: 1.5rem;
+    gap: 0.75rem;
+  }
+
+  .step-card-title {
+    font-size: 1.4375rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+  }
+
+  .step-card-text {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    letter-spacing: -0.025em;
+  }
+}

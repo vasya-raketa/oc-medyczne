@@ -1,0 +1,4 @@
+.DS_Store
+.cursor/settings.json
+api/config.php
+form-data/

@@ -1,0 +1,134 @@
+/* --k: the 768 frame is the 991 frame × 0.775; ≤767 (stacked mobile layout) it is 1. */
+
+.pricing-section {
+  --k: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: var(--canvas-width);
+  margin-inline: auto;
+  padding: 1.5rem var(--section-padding-x);
+}
+
+.pricing {
+  display: flex;
+  flex-direction: column;
+  gap: calc(3.75rem * var(--k));
+}
+
+.pricing-group,
+.pricing-row {
+  display: flex;
+  flex-direction: column;
+  gap: calc(1.25rem * var(--k));
+}
+
+.pricing-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(0.5714rem * var(--k));
+}
+
+.pricing-heading .badge {
+  --badge-padding: calc(0.4281rem * var(--k)) calc(0.75rem * var(--k));
+  --badge-font-size: calc(1rem * var(--k));
+  --badge-line-height: 1;
+}
+
+.pricing-subtitle {
+  color: var(--ink);
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* 480–767: the stacked layout (480 frame), sizes from the scale.css tokens. */
+@media (min-width: 480px) and (max-width: 767.98px) {
+  .pricing-section {
+    gap: var(--section-gap);
+    padding: 0 var(--section-padding-x);
+  }
+
+  .pricing {
+    gap: var(--section-y);
+  }
+
+  .pricing-group,
+  .pricing-row {
+    gap: var(--stack-gap);
+  }
+
+  .pricing-heading {
+    gap: var(--space-2-5);
+  }
+
+  .pricing-heading .badge {
+    --badge-padding: var(--space-1-5) var(--space-3);
+    --badge-font-size: var(--text-small);
+  }
+
+  .pricing-subtitle {
+    font-size: var(--text-subtitle);
+    line-height: var(--leading-tight);
+    text-box: trim-both cap alphabetic;
+  }
+}
+
+/* ≥768: the tablet table layout (Frame B), scaled by --k. */
+@media (min-width: 768px) {
+  .pricing-section {
+    --k: 0.775;
+    gap: calc(3.75rem * var(--k));
+    padding: calc(3.75rem * var(--k));
+  }
+
+  .pricing-heading {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .pricing-subtitle {
+    font-size: calc(1.6875rem * var(--k));
+    line-height: 1;
+  }
+}
+
+@media (min-width: 992px) {
+  .pricing-section {
+    --k: 1;
+  }
+}
+
+@media (min-width: 1440px) {
+  .pricing-section {
+    gap: 3.75rem;
+    padding: 5.3125rem 5rem;
+  }
+
+  .pricing-group {
+    gap: 2rem;
+  }
+
+  .pricing-heading .badge {
+    --badge-padding: 0.6563rem 1.1431rem;
+    --badge-font-size: 1.5rem;
+  }
+
+  .pricing-subtitle {
+    font-size: 2rem;
+    line-height: normal;
+  }
+
+  .pricing-row {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .pricing-row .pricing-table {
+    flex: 1;
+    min-width: 0;
+  }
+}

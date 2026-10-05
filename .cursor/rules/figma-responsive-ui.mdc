@@ -1,0 +1,40 @@
+---
+description: Rules for building responsive UI from Figma via MCP
+globs:
+alwaysApply: true
+---
+
+# Figma → code
+
+- Figma MCP output is a reference, not final code. Convert absolute positioning and fixed px widths into flex/grid layouts.
+- Build section by section. Never generate a whole page at once.
+
+# Responsive
+
+- Mobile-first CSS. Breakpoints: md = 768px, lg = 1024px, xl = 1440px.
+- No fixed widths/heights for layout; use %, max-width, flex, grid, clamp().
+- When given tablet/mobile Figma links for an existing section: first list the differences per breakpoint, then modify the EXISTING component. Never create a separate mobile/tablet component or file.
+
+```css
+/* ❌ BAD: desktop-first, fixed layout width */
+.benefits { display: flex; width: 1280px; }
+@media (max-width: 768px) { .benefits { flex-direction: column; } }
+
+/* ✅ GOOD: mobile-first, fluid */
+.benefits { display: grid; gap: var(--space-4); max-width: var(--content-max); }
+@media (min-width: 1024px) { .benefits { grid-template-columns: 0.75fr 1fr; } }
+```
+
+# Components & tokens
+
+- Before creating any component, search /components (or src/components) and reuse it.
+- All colors, spacing, radii and fonts come from tokens (tokens.css / tailwind config). No hardcoded hex or px values for these.
+- Use image/icon assets returned by the Figma MCP; don't invent placeholders.
+
+```css
+/* ❌ BAD */
+.card { background: #1741b3; border-radius: 36px; padding: 40px; }
+
+/* ✅ GOOD */
+.card { background: var(--color-blue); border-radius: var(--radius-lg); padding: var(--space-10); }
+```

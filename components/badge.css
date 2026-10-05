@@ -1,0 +1,52 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--badge-padding, 0.5rem 1rem);
+  border-radius: var(--radius-pill);
+  background: var(--pill);
+  color: var(--blue);
+  font-size: var(--badge-font-size, 1.125rem);
+  font-weight: 500;
+  line-height: var(--badge-line-height, normal);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.badge-soft {
+  background: var(--soft);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.badge-solid {
+  background: var(--badge-bg, var(--blue));
+  color: var(--white);
+  font-weight: 600;
+}
+
+.badge-purple {
+  --badge-bg: var(--purple);
+}
+
+.badge-num {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--badge-num-size, 2.5rem);
+  height: var(--badge-num-height, var(--badge-num-size, 2.5rem));
+  border-radius: var(--radius-pill);
+  background: var(--soft);
+  color: var(--ink);
+  font-size: var(--badge-num-font-size, 1.25rem);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.badge-outline {
+  border: var(--badge-border-width, 0.1071rem) solid currentColor;
+  background: none;
+  color: var(--white);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: 0;
+}

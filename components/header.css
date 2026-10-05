@@ -1,0 +1,126 @@
+.site-header {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+}
+
+.logo-link {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.logo {
+  width: calc(6.625rem * var(--k-fluid));
+  height: calc(2.5rem * var(--k-fluid));
+  object-fit: cover;
+}
+
+.site-nav {
+  grid-column: 2;
+  display: none;
+  gap: var(--nav-gap);
+}
+
+.site-nav a {
+  display: flex;
+  align-items: center;
+  height: var(--nav-height);
+  padding: 0 var(--nav-padding-x);
+  border-radius: var(--radius-pill);
+  background: var(--pill);
+  color: var(--blue);
+  font-size: var(--nav-font-size);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.site-nav a:hover {
+  opacity: 0.9;
+}
+
+.site-header .btn-nav {
+  grid-column: 3;
+  justify-self: end;
+  --btn-height: calc(2.375rem * var(--k-mobile) + 2.5rem * var(--k-desktop));
+  --btn-padding-x: calc(1rem * var(--k-fluid));
+  --btn-font-size: calc(1.125rem * var(--k-mobile) + 1.25rem * var(--k-desktop));
+  --btn-weight: 600;
+}
+
+@media (min-width: 480px) and (max-width: 767.98px) {
+  .logo {
+    width: 8.2813rem;
+    height: 3.1224rem;
+  }
+
+  .site-header .btn-nav {
+    --btn-height: var(--btn-h-sm);
+    --btn-padding-x: var(--space-4);
+    --btn-font-size: var(--text-btn-lg);
+  }
+}
+
+@media (min-width: 768px) {
+  .logo {
+    width: 5.1342rem;
+    height: 1.9358rem;
+  }
+
+  .site-nav {
+    display: flex;
+    --nav-gap: 0.6297rem;
+    --nav-height: 1.9625rem;
+    --nav-padding-x: 0.775rem;
+    --nav-font-size: 0.9687rem;
+  }
+
+  .site-header .btn-nav {
+    --btn-height: 1.9625rem;
+    --btn-padding-x: 0.775rem;
+    --btn-font-size: 0.9687rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .logo {
+    width: 6.625rem;
+    height: 2.5rem;
+  }
+
+  .site-nav {
+    --nav-gap: 0.8125rem;
+    --nav-height: 2.5rem;
+    --nav-padding-x: 1rem;
+    --nav-font-size: 1.25rem;
+  }
+
+  .site-header .btn-nav {
+    --btn-height: 2.5rem;
+    --btn-padding-x: 1rem;
+    --btn-font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .logo {
+    width: 7.9562rem;
+    height: 3rem;
+  }
+
+  .site-nav {
+    --nav-height: 3rem;
+    --nav-padding-x: 1.5rem;
+    --nav-font-size: 1.5rem;
+  }
+
+  .site-header .btn-nav {
+    --btn-height: 3rem;
+    --btn-padding-x: 1.5rem;
+    --btn-font-size: 1.5rem;
+    --btn-weight: 500;
+  }
+}
