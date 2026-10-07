@@ -53,7 +53,7 @@
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1200px) {
   .section-title {
     --section-title-width: 48.5rem;
     font-size: 3.375rem;

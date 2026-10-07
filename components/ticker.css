@@ -114,7 +114,7 @@
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1200px) {
   .ticker {
     --ticker-font-size: 1.75rem;
   }

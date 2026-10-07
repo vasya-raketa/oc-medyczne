@@ -102,7 +102,7 @@
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1200px) {
   .pricing-section {
     gap: 3.75rem;
     padding: 5.3125rem 5rem;

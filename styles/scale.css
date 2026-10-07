@@ -1,7 +1,7 @@
 /*
   Fluid scale: 1rem = 16px at the width of the Figma frame that owns the current range,
   so every rem value can be copied straight from that frame (px / 16).
-  Frames: mobile 480, tablet 768, laptop 991, desktop 1440.
+  Frames: mobile 480, tablet 768 (768–991), laptop 991 (992–1199), desktop 1440 (≥ 1200).
   --canvas-width is that frame's width; sections use it as their content max-width.
   ≤ 767px it is 100%, so sections always span the viewport.
   --section-padding-x is the side padding of every section ≤ 767px (≥ 768px sections set their own).
@@ -103,7 +103,7 @@ html {
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1200px) {
   :root {
     --design-width: 1440;
     --canvas-width: 90rem;

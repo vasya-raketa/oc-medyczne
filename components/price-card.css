@@ -1,6 +1,6 @@
 /*
-  ≤767 (Frames C/D): stacked. 768–1439 (Frames A/B): price left, text + button right.
-  ≥1440: the narrow vertical card next to the table. Rem values are Figma px / 16, scaled by --k.
+  ≤767 (Frames C/D): stacked. 768–1199 (Frames A/B): price left, text + button right.
+  ≥1200: the narrow vertical card next to the table. Rem values are Figma px / 16, scaled by --k.
 */
 
 .price-card {
@@ -182,7 +182,7 @@
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1200px) {
   .price-card {
     display: flex;
     flex: 0 0 24.2857rem;

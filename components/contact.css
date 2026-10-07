@@ -1,7 +1,7 @@
 /*
   Contact section + footer (#kontakt). Plain rem per range, copied from the frame
   that owns it (scale.css): ≤479 the 390 frame, 480–767 the 480 frame,
-  768–991 the 768 frame, 992–1439 the 991 frame, ≥1440 the 1440 frame.
+  768–991 the 768 frame, 992–1199 the 991 frame, ≥1200 the 1440 frame.
   Label-relative sizes (asterisk, input text) are in em.
 */
 
@@ -791,7 +791,7 @@
   }
 }
 
-/* 992–1439: 991 frame. */
+/* 992–1199: 991 frame. */
 @media (min-width: 992px) {
   .contact {
     background: linear-gradient(181.2deg, var(--blue) 29.817%, var(--blue-bright) 99.007%);
@@ -941,8 +941,8 @@
   }
 }
 
-/* ≥ 1440: 1440 frame. Intro and contact card stacked left of the form. */
-@media (min-width: 1440px) {
+/* ≥ 1200: 1440 frame. Intro and contact card stacked left of the form. */
+@media (min-width: 1200px) {
   .contact {
     background: linear-gradient(172.56deg, var(--blue) 13.28%, var(--blue-bright) 90.33%);
   }

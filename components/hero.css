@@ -267,7 +267,7 @@
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1200px) {
   .hero-canvas {
     height: 56.25rem;
     row-gap: 0;
