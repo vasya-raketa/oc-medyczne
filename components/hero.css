@@ -10,7 +10,9 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  height: 100dvh;
+  /* svh, not dvh: stable when the mobile address bar shows/hides, so the ≤767
+     frozen frame (.pin-viewport) doesn't shift. Same height on first load. */
+  height: 100svh;
   overflow: hidden;
   background: var(--white);
 }

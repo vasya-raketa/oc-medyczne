@@ -27,7 +27,8 @@
   position: relative;
   max-width: var(--canvas-width);
   margin: 0 auto;
-  padding: 1.875rem var(--section-padding-x);
+  /* Top: --section-space (new background). Bottom: the legal bar's own spacing. */
+  padding: var(--section-space) var(--section-padding-x) 1.875rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -294,12 +295,6 @@
   gap: 0.75rem;
 }
 
-@media (max-width: 479.98px) {
-  .form-actions {
-    --btn-height: 2.25rem;
-  }
-}
-
 .form-actions .btn:focus-visible {
   outline: 0.125rem solid var(--blue);
   outline-offset: 0.125rem;
@@ -435,7 +430,7 @@
 
   .contact-inner {
     gap: var(--section-gap);
-    padding: var(--section-y) var(--section-padding-x) var(--section-gap);
+    padding: var(--section-space) var(--section-padding-x) var(--section-gap);
   }
 
   .contact-layout,
@@ -570,7 +565,7 @@
   }
 
   .contact-inner {
-    padding: 3.75rem var(--section-padding-x) 2.5rem;
+    padding: var(--section-space) var(--section-padding-x) 2.5rem;
     gap: 2.5rem;
   }
 
@@ -645,7 +640,7 @@
   }
 
   .contact-inner {
-    padding: 2.9063rem 2.9063rem 1.9375rem;
+    padding: var(--section-space) 2.9063rem 1.9375rem;
     gap: 1.9375rem;
   }
 
@@ -805,7 +800,7 @@
   }
 
   .contact-inner {
-    padding: 3.75rem 3.75rem 2.5rem;
+    padding: var(--section-space) 3.75rem 2.5rem;
     gap: 2.5rem;
   }
 
@@ -956,7 +951,7 @@
   }
 
   .contact-inner {
-    padding: 3.75rem 5rem 2.5rem;
+    padding: var(--section-space) 5rem 2.5rem;
   }
 
   .contact-layout {

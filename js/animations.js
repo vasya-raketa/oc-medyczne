@@ -6,10 +6,15 @@
 (() => {
   if (!window.gsap || !window.ScrollTrigger || !window.SplitText) {
     document.documentElement.classList.remove("js-anim");
+    document.querySelectorAll(".scroller.is-pinned-scroll").forEach((el) => {
+      el.classList.remove("is-pinned-scroll");
+    });
     return;
   }
 
   gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
   const mm = gsap.matchMedia();
 
@@ -40,6 +45,7 @@
         toggleActions: "play none none none",
       };
       const splits = [];
+      const cleanups = [];
 
       const fadeUp = (targets, vars = {}) => {
         const nodes = gsap.utils.toArray(targets);
@@ -229,9 +235,9 @@
         }
       });
 
-      /* 6. Współpraca steps — clear transform so the mobile scroller stays intact */
+      /* 6. Współpraca steps (≥768 grid only; ≤767 the pinned track below owns them) */
       const steps = gsap.utils.toArray(".step-card");
-      if (steps.length) {
+      if (!isMobile && steps.length) {
         gsap.from(steps, {
           y: yCard,
           opacity: 0,
@@ -241,6 +247,68 @@
           delay: 0.12,
           scrollTrigger: { trigger: ".steps", ...view },
           clearProps: "transform",
+        });
+      }
+
+      /*
+        ≤767: when the Współpraca section's bottom edge meets the screen bottom, the
+        whole page frame above the contact section (.pin-viewport) freezes in place
+        and vertical scroll moves the cards 1 → 4. Then the page scrolls on.
+      */
+      const frame = document.querySelector("[data-pin-viewport]");
+      const coop = document.querySelector("#wspolpraca");
+      const clip = coop?.querySelector("[data-steps-pin]");
+      const track = coop?.querySelector("[data-steps]");
+      const cards = track ? [...track.children] : [];
+      if (isMobile && frame && clip && track && cards.length > 1) {
+        /*
+          Exact horizontal overflow. Not track.scrollWidth: with overflow visible it
+          drops the trailing padding, so card 4 would overshoot the right gutter.
+          Rect deltas inside the track are transform-invariant.
+        */
+        const lastCard = cards[cards.length - 1];
+        const scrollDist = () =>
+          Math.max(
+            0,
+            lastCard.getBoundingClientRect().right -
+              track.getBoundingClientRect().left +
+              parseFloat(getComputedStyle(track).paddingRight) -
+              clip.clientWidth,
+          );
+
+        const tween = gsap.to(track, {
+          x: () => -scrollDist(),
+          ease: "none",
+          scrollTrigger: {
+            id: "coop-pin",
+            trigger: coop,
+            start: "bottom bottom",
+            end: () => `+=${scrollDist()}`,
+            pin: frame,
+            pinSpacing: true,
+            scrub: 0.6,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            refreshPriority: 1,
+            snap: {
+              snapTo: 1 / (cards.length - 1),
+              duration: 0.3,
+              ease: "power1.inOut",
+            },
+          },
+        });
+
+        /* Keyboard: tabbing to a card scrolls the page to that card's position. */
+        const onCardFocus = (event) => {
+          const st = tween.scrollTrigger;
+          const i = cards.indexOf(event.target.closest(".step-card"));
+          if (!st || i < 0) return;
+          window.scrollTo({ top: st.start + (st.end - st.start) * (i / (cards.length - 1)) });
+        };
+        track.addEventListener("focusin", onCardFocus);
+        cleanups.push(() => {
+          track.removeEventListener("focusin", onCardFocus);
+          gsap.set(track, { clearProps: "transform" });
         });
       }
 
@@ -259,6 +327,7 @@
       else window.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
 
       return () => {
+        cleanups.forEach((fn) => fn());
         splits.forEach((split) => split.revert());
       };
     },

@@ -8,7 +8,8 @@
   width: 100%;
   max-width: var(--canvas-width);
   margin-inline: auto;
-  padding: 1.5rem var(--section-padding-x);
+  /* No top padding: same background as Co daje above, so the gap is its padding. */
+  padding: 0 var(--section-padding-x) var(--section-space);
 }
 
 .pricing {
@@ -49,7 +50,6 @@
 @media (min-width: 480px) and (max-width: 767.98px) {
   .pricing-section {
     gap: var(--section-gap);
-    padding: 0 var(--section-padding-x);
   }
 
   .pricing {
@@ -82,7 +82,7 @@
   .pricing-section {
     --k: 0.775;
     gap: calc(3.75rem * var(--k));
-    padding: calc(3.75rem * var(--k));
+    padding-inline: calc(3.75rem * var(--k));
   }
 
   .pricing-heading {
@@ -105,7 +105,7 @@
 @media (min-width: 1200px) {
   .pricing-section {
     gap: 3.75rem;
-    padding: 5.3125rem 5rem;
+    padding-inline: 5rem;
   }
 
   .pricing-group {

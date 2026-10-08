@@ -39,6 +39,16 @@
   width: 100%;
 }
 
+/* ≤479: every button except the header's .btn-nav shares one size (beats component vars). */
+@media (max-width: 479.98px) {
+  .btn:is(.btn-xl, .btn-block):not(.btn-nav) {
+    --btn-height: 44px;
+    --btn-padding-y: 0;
+    --btn-font-size: 1.125rem;
+    --btn-weight: 500;
+  }
+}
+
 .btn-light {
   background: var(--white);
   color: var(--ink);

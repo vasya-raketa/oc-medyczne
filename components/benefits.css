@@ -11,7 +11,7 @@
   width: 100%;
   max-width: var(--canvas-width);
   margin-inline: auto;
-  padding: 7.5rem var(--section-padding-x) 3.75rem;
+  padding: var(--section-space) var(--section-padding-x);
 }
 
 .benefits-tabs {
@@ -160,7 +160,6 @@
 @media (min-width: 480px) and (max-width: 767.98px) {
   .benefits-section {
     gap: var(--section-gap);
-    padding: var(--section-y-lg) var(--section-padding-x) var(--section-y);
   }
 
   .benefits-cards {
@@ -202,7 +201,7 @@
   .benefits-section {
     --k: 0.775;
     gap: calc(3.75rem * var(--k));
-    padding: calc(7.5rem * var(--k)) calc(3.75rem * var(--k)) calc(3.75rem * var(--k));
+    padding-inline: calc(3.75rem * var(--k));
   }
 
   .benefits {
@@ -257,7 +256,7 @@
 @media (min-width: 1200px) {
   .benefits-section {
     gap: 3.75rem;
-    padding: 5.3125rem 5rem;
+    padding-inline: 5rem;
   }
 
   .benefits {

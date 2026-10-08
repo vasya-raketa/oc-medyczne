@@ -1,15 +1,20 @@
 /*
-  HorizontalScroller(el, { query, label, role?, indicators?, autoplay? }) → MediaQueryList.
+  HorizontalScroller(el, { query, label, role?, indicators?, autoplay?, pinned? }) → MediaQueryList.
   While `query` matches (the .scroller layout is active), the row is focusable for
   arrow-key scrolling and gets an accessible name; outside it, both are removed.
 
   indicators: dots under the row (one per card). autoplay: ms between advances
   (progress fill on the active pill). Scrolls with el.scrollTo only — never
   scrollIntoView, which would jump the page.
+
+  pinned: a media query. While it matches and motion is allowed, native swipe is off
+  and `.is-pinned-scroll` is set so GSAP can drive the track. With
+  prefers-reduced-motion, falls back to the normal swipe scroller.
 */
-function HorizontalScroller(el, { query, label, role, indicators = false, autoplay = 0 }) {
+function HorizontalScroller(el, { query, label, role, indicators = false, autoplay = 0, pinned = "" }) {
   const media = window.matchMedia(query);
   const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const pinMedia = pinned ? window.matchMedia(pinned) : null;
   const hoverable = window.matchMedia("(hover: hover) and (pointer: fine)");
   const items = () => [...el.children];
   const n = () => items().length;
@@ -27,7 +32,8 @@ function HorizontalScroller(el, { query, label, role, indicators = false, autopl
   let scrollWait = 0;
 
   const reduced = () => motion.matches;
-  const swipeOn = () => media.matches;
+  const pinOn = () => !!pinMedia?.matches && !reduced();
+  const swipeOn = () => media.matches && !pinOn();
   const autoOn = () => swipeOn() && duration > 0 && !reduced();
   const isPaused = () => paused.size > 0 || document.hidden || !onScreen;
 
@@ -162,6 +168,29 @@ function HorizontalScroller(el, { query, label, role, indicators = false, autopl
   };
 
   const apply = () => {
+    const list = items();
+    if (pinOn()) {
+      el.classList.add("is-pinned-scroll");
+      el.removeAttribute("tabindex");
+      el.setAttribute("aria-label", label);
+      if (role) el.setAttribute("role", role);
+      list.forEach((card) => {
+        if (!card.hasAttribute("tabindex")) card.tabIndex = 0;
+      });
+      nav?.setAttribute("hidden", "");
+      stopFill();
+      paused.clear();
+      el.scrollLeft = 0;
+      return;
+    }
+
+    el.classList.remove("is-pinned-scroll");
+    list.forEach((card) => {
+      if (card.tabIndex === 0 && !card.hasAttribute("data-keep-tabindex")) {
+        card.removeAttribute("tabindex");
+      }
+    });
+
     if (swipeOn()) {
       el.tabIndex = 0;
       el.setAttribute("aria-label", label);
@@ -185,6 +214,7 @@ function HorizontalScroller(el, { query, label, role, indicators = false, autopl
 
   media.addEventListener("change", apply, { signal });
   motion.addEventListener("change", apply, { signal });
+  pinMedia?.addEventListener("change", apply, { signal });
   apply();
 
   el.addEventListener("scroll", onScroll, { signal, passive: true });

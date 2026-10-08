@@ -29,8 +29,16 @@
       </li>`,
   ).join("");
 
+  /* Clip wrapper for the GSAP-driven track (≤767, motion ok). */
+  const clip = document.createElement("div");
+  clip.className = "steps-pin";
+  clip.setAttribute("data-steps-pin", "");
+  list.before(clip);
+  clip.append(list);
+
   HorizontalScroller(list, {
     query: "(max-width: 767.98px)",
     label: "Etapy współpracy",
+    pinned: "(max-width: 767.98px)",
   });
 }

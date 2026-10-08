@@ -31,6 +31,36 @@
   outline-offset: 0.1875rem;
 }
 
+/*
+  Pinned horizontal scroll (Współpraca ≤767): native overflow/snap/swipe off; GSAP
+  translates the track. Parent .steps-pin clips the bleed.
+*/
+.steps-pin:has(.is-pinned-scroll) {
+  overflow: hidden;
+  margin-inline: calc(var(--scroller-bleed, var(--section-padding-x)) * -1);
+}
+
+.scroller.is-pinned-scroll {
+  margin-inline: 0;
+  overflow: visible;
+  overscroll-behavior-x: auto;
+  scroll-snap-type: none;
+  touch-action: pan-y;
+}
+
+.scroller.is-pinned-scroll > * {
+  scroll-snap-align: none;
+}
+
+.scroller.is-pinned-scroll:focus-visible {
+  outline: none;
+}
+
+.scroller.is-pinned-scroll > *:focus-visible {
+  outline: 0.125rem solid var(--blue);
+  outline-offset: 0.1875rem;
+}
+
 .scroller-dots {
   display: flex;
   justify-content: center;

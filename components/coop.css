@@ -12,7 +12,8 @@
   width: 100%;
   max-width: var(--canvas-width);
   margin-inline: auto;
-  padding: 2.25rem var(--section-padding-x) 3.75rem;
+  /* No top padding: same background as pricing above. */
+  padding: 0 var(--section-padding-x) var(--section-space);
 }
 
 .section-title-lines {
@@ -42,6 +43,13 @@
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.02em;
+}
+
+/* Invisible ≥768 so .steps can be the 2×2 / 4-col grid. */
+@media (min-width: 768px) {
+  .steps-pin {
+    display: contents;
+  }
 }
 
 .step-card {
@@ -78,7 +86,6 @@
 @media (min-width: 480px) and (max-width: 767.98px) {
   .coop-section {
     gap: var(--space-6);
-    padding: var(--section-y) var(--section-padding-x);
   }
 
   .coop {
@@ -129,7 +136,6 @@
   .coop-section {
     --k: 0.45;
     gap: calc(3.75rem * var(--k));
-    padding: calc(3.75rem * var(--k)) var(--section-padding-x);
   }
 
   .coop-intro {
@@ -163,7 +169,7 @@
 @media (min-width: 768px) {
   .coop-section {
     --k: 0.775;
-    padding: calc(3.75rem * var(--k));
+    padding-inline: calc(3.75rem * var(--k));
   }
 }
 
@@ -176,7 +182,7 @@
 @media (min-width: 1200px) {
   .coop-section {
     gap: 3.75rem;
-    padding: 5.3125rem 5rem;
+    padding-inline: 5rem;
   }
 
   .coop-head {
