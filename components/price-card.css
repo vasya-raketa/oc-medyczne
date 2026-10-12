@@ -7,7 +7,6 @@
   --btn-height: 3rem;
   --btn-padding-x: 1.6875rem;
   --btn-font-size: 1.125rem;
-  --btn-weight: 600;
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -158,7 +157,6 @@
   .price-card-blue {
     --btn-font-family: var(--font-ui);
     --btn-font-size: calc(1rem * var(--k));
-    --btn-weight: 700;
     --btn-letter-spacing: 0;
   }
 

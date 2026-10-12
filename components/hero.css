@@ -9,10 +9,14 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  /*
+    One screen tall, never resized by the mobile address bar: --hero-height is the
+    first-load innerHeight, set in <head> and updated only when the width changes
+    (rotation). Fallbacks: 100svh (static), then 100vh. ≥480 uses fixed heights.
+  */
   height: 100vh;
-  /* svh, not dvh: stable when the mobile address bar shows/hides, so the ≤767
-     frozen frame (.pin-viewport) doesn't shift. Same height on first load. */
   height: 100svh;
+  height: var(--hero-height, 100svh);
   overflow: hidden;
   background: var(--white);
 }
@@ -127,7 +131,6 @@
   --btn-padding-y: calc(0.625rem * var(--k-mobile) + 0.9677rem * var(--k-desktop));
   --btn-padding-x: calc(1.25rem * var(--k-mobile) + 1.9355rem * var(--k-desktop));
   --btn-font-size: calc(1.375rem * var(--k-mobile) + 2.2581rem * var(--k-desktop));
-  --btn-weight: 600;
 }
 
 @media (min-width: 480px) {
@@ -244,7 +247,6 @@
     --btn-padding-y: 0.75rem;
     --btn-padding-x: 1.5rem;
     --btn-font-size: 1.75rem;
-    --btn-weight: 500;
   }
 }
 

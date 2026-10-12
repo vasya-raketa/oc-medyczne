@@ -96,7 +96,6 @@
     --btn-height: var(--btn-h);
     --btn-padding-x: var(--space-6);
     --btn-font-size: var(--text-btn);
-    --btn-weight: 600;
     gap: var(--space-4);
   }
 

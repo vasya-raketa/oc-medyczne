@@ -48,7 +48,6 @@
   --btn-height: calc(2.375rem * var(--k-mobile) + 2.5rem * var(--k-desktop));
   --btn-padding-x: calc(1rem * var(--k-fluid));
   --btn-font-size: calc(1.125rem * var(--k-mobile) + 1.25rem * var(--k-desktop));
-  --btn-weight: 600;
 }
 
 @media (min-width: 480px) and (max-width: 767.98px) {
@@ -121,6 +120,5 @@
     --btn-height: 3rem;
     --btn-padding-x: 1.5rem;
     --btn-font-size: 1.5rem;
-    --btn-weight: 500;
   }
 }

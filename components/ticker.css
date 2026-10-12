@@ -23,38 +23,27 @@
   pointer-events: none;
 }
 
+/* Track */
+
 .ticker-track {
   position: relative;
   display: flex;
   width: max-content;
+
+  /* CSS fallback when JavaScript is unavailable. */
   will-change: transform;
-  animation: ticker var(--ticker-duration, 30s) linear infinite;
+  animation: ticker 40s linear infinite;
 }
 
-.ticker:hover .ticker-track {
-  animation-play-state: paused;
-}
-
-@keyframes ticker {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ticker-track {
-    animation: none;
-  }
-}
+/* Groups */
 
 .ticker-group {
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  min-width: 0;
+  box-sizing: border-box;
+
   color: var(--white);
   font-family: var(--font-sans);
   font-size: var(--ticker-font-size);
@@ -69,10 +58,45 @@
   white-space: nowrap;
 }
 
+/* Icons */
+
 .ticker-group img {
+  flex-shrink: 0;
   width: var(--ticker-icon);
+  min-width: var(--ticker-icon);
+  max-width: var(--ticker-icon);
   height: var(--ticker-icon);
 }
+
+/* CSS fallback animation */
+
+@keyframes ticker {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Pause on hover only for mouse devices. */
+
+@media (hover: hover) and (pointer: fine) {
+  .ticker:hover .ticker-track {
+    animation-play-state: paused;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+}
+
+/* Tablet portrait */
 
 @media (min-width: 480px) and (max-width: 767.98px) {
   .ticker {
@@ -81,6 +105,8 @@
     --ticker-gap: var(--space-4);
   }
 }
+
+/* Tablet */
 
 @media (min-width: 768px) {
   .ticker {
@@ -98,6 +124,8 @@
   }
 }
 
+/* Desktop */
+
 @media (min-width: 992px) {
   .ticker {
     --ticker-padding-y: 0.75rem;
@@ -113,6 +141,8 @@
     height: 95.5675rem;
   }
 }
+
+/* Large desktop */
 
 @media (min-width: 1200px) {
   .ticker {

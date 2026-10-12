@@ -6,10 +6,26 @@
     <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="apple-touch-icon" href="assets/apple.png" />
     <script>
+      (function () {
+        var root = document.documentElement;
+        var width = window.innerWidth;
+        var setHeroHeight = function () {
+          root.style.setProperty("--hero-height", window.innerHeight + "px");
+        };
+        setHeroHeight();
+        window.addEventListener("resize", function () {
+          if (window.innerWidth === width) return;
+          width = window.innerWidth;
+          setHeroHeight();
+        });
+      })();
       if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         document.documentElement.classList.add("js-anim");
         window.setTimeout(function () {
-          if (!window.gsap) document.documentElement.classList.remove("js-anim");
+          if (window.gsap) return;
+          /* GSAP is late: show the page, and tell animations.js not to replay entrances. */
+          document.documentElement.classList.remove("js-anim");
+          document.documentElement.dataset.animFallback = "";
         }, 3000);
       }
     </script>
@@ -50,7 +66,12 @@
     <link rel="stylesheet" href="components/contact.css" />
   </head>
   <body>
-    <!-- ≤767: GSAP pins this whole frame while the Współpraca cards scroll sideways. -->
+    <!--
+      ≤767: GSAP pins this whole frame while the Współpraca cards scroll sideways. The
+      spacer is in the HTML (ScrollTrigger pinSpacer) so GSAP never moves the page —
+      moving it can freeze the ticker's animation in mobile Safari.
+    -->
+    <div class="pin-spacer-host" data-pin-spacer>
     <div class="pin-viewport" data-pin-viewport>
     <section class="hero" id="top">
       <div class="hero-canvas">
@@ -94,7 +115,7 @@
       </div>
 
       <div class="ticker" aria-label="Zawody medyczne">
-        <img class="ticker-wave" src="assets/ticker-wave.svg" alt="" />
+        <img class="ticker-wave" src="assets/ticker-wave.webp" alt="" />
         <div class="ticker-track">
           <ul class="ticker-group">
             <li>Dentyści</li>
@@ -115,7 +136,7 @@
             <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
           </ul>
           <ul class="ticker-group" aria-hidden="true">
-            <li>Dentysty</li>
+            <li>Dentyści</li>
             <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
             <li>Pielęgniarki</li>
             <li><img src="assets/icon-doctor-alt.svg" alt="" /></li>
@@ -174,6 +195,7 @@
         </div>
       </section>
     </main>
+    </div>
     </div>
 
     <footer class="contact" id="kontakt">
@@ -280,10 +302,29 @@
         </div>
       </div>
     </footer>
+    <!--
+      Ticker: a per-frame loop, inline. On iPhone every other approach (CSS animation,
+      Web Animations, external ticker.js) blinked or jumped; this exact code doesn't.
+    -->
+    <script>
+      (() => {
+        const track = document.querySelector(".ticker-track");
+        if (!track || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        track.style.animation = "none";
+        let start = 0;
+        const step = (t) => {
+          start ||= t;
+          const w = track.firstElementChild.getBoundingClientRect().width;
+          const x = (((t - start) / 1000) * 60) % w;
+          track.style.transform = `translate3d(${-x}px, 0, 0)`;
+          requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      })();
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" defer></script>
-    <script src="components/ticker.js" defer></script>
     <script src="components/scroller.js" defer></script>
     <script src="components/benefits.js" defer></script>
     <script src="components/pricing-table.js" defer></script>

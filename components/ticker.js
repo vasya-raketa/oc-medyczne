@@ -1,44 +1,45 @@
+/*
+  Ticker: two identical groups of items (the second aria-hidden). Without JS, the CSS
+  animation (ticker.css) moves the track by -50%; the .ticker-js class set in <head>
+  keeps that animation from ever starting when this script runs.
+
+  With JS, a requestAnimationFrame loop moves the track instead. On iPhone (Safari and
+  Chrome) every compositor-driven version blinked or jumped; this loop doesn't:
+  - The position comes from the time since start, so the speed is constant at any
+    frame rate.
+  - The group width is measured every frame, so the wrap is always exact, even after
+    the web font swaps in.
+*/
 (() => {
-  const SPEED = 60;
+  const SPEED = 60; // px per second
   const ticker = document.querySelector(".ticker");
   const track = ticker?.querySelector(".ticker-track");
-  const source = track?.querySelector(".ticker-group");
-  if (!ticker || !track || !source) return;
+  const groups = track?.querySelectorAll(".ticker-group");
 
-  const cycleHTML = source.innerHTML;
-  let frame = 0;
+  if (!ticker || !track || groups?.length !== 2) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  const fillTicker = () => {
-    track.replaceChildren();
-
-    const group = document.createElement("ul");
-    group.className = "ticker-group";
-    group.innerHTML = cycleHTML;
-    track.append(group);
-
-    const minWidth = ticker.clientWidth;
+  // Very wide screens: repeat the items until one group covers the strip.
+  const cycleHTML = groups[0].innerHTML;
+  const fill = () => {
     let guard = 0;
-    while (minWidth > 0 && group.getBoundingClientRect().width < minWidth && guard < 24) {
-      group.insertAdjacentHTML("beforeend", cycleHTML);
-      guard += 1;
-    }
-
-    const clone = group.cloneNode(true);
-    clone.setAttribute("aria-hidden", "true");
-    track.append(clone);
-
-    const groupWidth = group.getBoundingClientRect().width;
-    if (groupWidth > 0) {
-      track.style.setProperty("--ticker-duration", `${groupWidth / SPEED}s`);
+    while (groups[0].getBoundingClientRect().width < ticker.clientWidth && guard < 24) {
+      groups.forEach((group) => group.insertAdjacentHTML("beforeend", cycleHTML));
+      guard++;
     }
   };
+  fill();
+  new ResizeObserver(fill).observe(ticker);
 
-  const schedule = () => {
-    cancelAnimationFrame(frame);
-    frame = requestAnimationFrame(fillTicker);
+  let start = 0;
+  const step = (time) => {
+    start ||= time;
+    const width = groups[0].getBoundingClientRect().width;
+    if (width > 0) {
+      const x = (((time - start) / 1000) * SPEED) % width;
+      track.style.transform = `translate3d(${-x}px, 0, 0)`;
+    }
+    requestAnimationFrame(step);
   };
-
-  fillTicker();
-  document.fonts.ready.then(fillTicker);
-  window.addEventListener("resize", schedule);
+  requestAnimationFrame(step);
 })();
