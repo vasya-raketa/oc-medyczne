@@ -421,6 +421,13 @@
   font-weight: 500;
 }
 
+/* Company details (art. 206 KSH), one small line under the legal bar. */
+.company-info {
+  color: var(--white-70);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
 /* ≤767: one line across the full width, the links pushed to the edges. */
 .legal-links {
   display: flex;
