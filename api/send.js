@@ -110,7 +110,7 @@ function envConfig() {
   };
 }
 
-function buildMail({ values, message, consents, page, ip, date }) {
+function buildMail({ values, message, consents, page, date }) {
   const blue = "#2340B0";
   const ink = "#15154a";
   const muted = "#626d90";
@@ -150,7 +150,7 @@ function buildMail({ values, message, consents, page, ip, date }) {
     consentText += `- ${text}: ${answer}\n`;
   }
 
-  const infoRows = row("Data i godzina", h(date)) + row("Strona", h(page)) + row("Adres IP", h(ip));
+  const infoRows = row("Data i godzina", h(date)) + row("Strona", h(page));
   const footer =
     "Wiadomość wygenerowana automatycznie przez formularz kontaktowy. Aby odpowiedzieć klientowi, kliknij „Odpowiedz”.";
   const title = "Masz nowe zgłoszenie z formularza na stronie OC medyczne";
@@ -193,7 +193,6 @@ ${consentText}
 Informacje o zgłoszeniu
 Data i godzina: ${date}
 Strona: ${page}
-Adres IP: ${ip}
 
 ---
 ${footer}`;
@@ -293,7 +292,7 @@ module.exports = async function handler(req, res) {
     }
 
     const date = warsawStamp();
-    const { html, text } = buildMail({ values, message, consents, page, ip, date });
+    const { html, text } = buildMail({ values, message, consents, page, date });
 
     const resend = new Resend(config.apiKey);
     const { error } = await resend.emails.send({
