@@ -40,7 +40,6 @@
     <link rel="preload" href="assets/fonts/instrument-sans-latin-ext-500-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/instrument-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="styles/fonts.css" />
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -304,6 +303,8 @@
             <button class="cookie-settings" type="button" data-cookie-settings>Ustawienia cookies</button>
           </div>
         </div>
+        <!-- TODO: if RkRisk wants it shown, append ", Numer w rejestrze agentów KNF: [..]". -->
+        <p class="company-info">RkRisk Sp. z o.o., ul. Powstańców Śląskich 121/208, 53-332 Wrocław, [TODO: sąd rejestrowy], KRS [TODO], NIP [TODO], kapitał zakładowy [TODO] zł</p>
       </div>
     </footer>
     <!--
@@ -326,9 +327,9 @@
         requestAnimationFrame(step);
       })();
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" defer></script>
+    <script src="js/vendor/gsap.min.js" defer></script>
+    <script src="js/vendor/ScrollTrigger.min.js" defer></script>
+    <script src="js/vendor/SplitText.min.js" defer></script>
     <script src="components/scroller.js" defer></script>
     <script src="components/benefits.js" defer></script>
     <script src="components/pricing-table.js" defer></script>

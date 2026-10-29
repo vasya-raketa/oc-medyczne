@@ -1,7 +1,8 @@
 /*
   Contact form handler (#kontakt). POST only, JSON:
     { "success": true }  or  { "success": false, "errors": { "<field>|form": "<message>" } }
-  Server errors go to console.error (Vercel logs) and never to the user.
+  Server errors go to console.error (Vercel logs) and never to the user. Logs carry
+  status and error names only, never form data or the visitor's IP.
 
   Rate limiting: file storage is not available on Vercel, so it is omitted.
   Honeypot + 3 s fill-time stay as the anti-spam layer. To add a limit later
@@ -77,14 +78,6 @@ function multiLine(value) {
     .trim();
 }
 
-function clientIp(req) {
-  const forwarded = String(req.headers["x-forwarded-for"] || "")
-    .split(",")[0]
-    .trim();
-  const raw = forwarded || String(req.headers["x-real-ip"] || req.socket?.remoteAddress || "");
-  return raw || "nieznany";
-}
-
 function warsawStamp() {
   const parts = new Intl.DateTimeFormat("en-GB", {
     timeZone: "Europe/Warsaw",
@@ -110,7 +103,7 @@ function envConfig() {
   };
 }
 
-function buildMail({ values, message, consents, page, date }) {
+function buildMail({ values, message, consents, page, date, submittedAt }) {
   const blue = "#2340B0";
   const ink = "#15154a";
   const muted = "#626d90";
@@ -150,7 +143,10 @@ function buildMail({ values, message, consents, page, date }) {
     consentText += `- ${text}: ${answer}\n`;
   }
 
-  const infoRows = row("Data i godzina", h(date)) + row("Strona", h(page));
+  const infoRows =
+    row("Data i godzina", h(date)) +
+    row("Znacznik czasu (ISO 8601)", h(submittedAt)) +
+    row("Strona", h(page));
   const footer =
     "Wiadomość wygenerowana automatycznie przez formularz kontaktowy. Aby odpowiedzieć klientowi, kliknij „Odpowiedz”.";
   const title = "Masz nowe zgłoszenie z formularza na stronie OC medyczne";
@@ -192,6 +188,7 @@ Zgody
 ${consentText}
 Informacje o zgłoszeniu
 Data i godzina: ${date}
+Znacznik czasu (ISO 8601): ${submittedAt}
 Strona: ${page}
 
 ---
@@ -230,17 +227,16 @@ module.exports = async function handler(req, res) {
     }
 
     const body = req.body && typeof req.body === "object" ? req.body : {};
-    const ip = clientIp(req);
 
     if (singleLine(body.website) !== "") {
-      logError(`spam: honeypot filled (IP ${ip})`);
+      logError("spam: honeypot filled");
       json(res, 200, { success: true });
       return;
     }
 
     const loadedAt = Number.parseInt(String(body.ts ?? ""), 10);
     if (!Number.isFinite(loadedAt) || Date.now() - loadedAt < MIN_FILL_MS) {
-      logError(`spam: missing or too short fill time (IP ${ip})`);
+      logError("spam: missing or too short fill time");
       json(res, 422, { success: false, errors: { form: TOO_FAST } });
       return;
     }
@@ -250,7 +246,8 @@ module.exports = async function handler(req, res) {
       values[field] = singleLine(body[field]);
     }
     const message = multiLine(body.question);
-    const consents = { consent: body.consent === "on" };
+    /* Only an explicit "on" (form) or true (JSON) counts as consent. */
+    const consents = { consent: body.consent === "on" || body.consent === true };
     const errors = {};
 
     if (values.name === "") errors.name = "Podaj swoje imię.";
@@ -292,7 +289,8 @@ module.exports = async function handler(req, res) {
     }
 
     const date = warsawStamp();
-    const { html, text } = buildMail({ values, message, consents, page, date });
+    const submittedAt = new Date().toISOString();
+    const { html, text } = buildMail({ values, message, consents, page, date, submittedAt });
 
     const resend = new Resend(config.apiKey);
     const { error } = await resend.emails.send({
@@ -305,7 +303,8 @@ module.exports = async function handler(req, res) {
     });
 
     if (error) {
-      console.error("contact form: Resend error", error);
+      /* Name and status code only: the Resend error message can echo addresses. */
+      logError(`Resend error ${error.name || "unknown"} (${error.statusCode ?? "no status"})`);
       fail(res);
       return;
     }

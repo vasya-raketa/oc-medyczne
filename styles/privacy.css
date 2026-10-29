@@ -105,6 +105,13 @@
   font-weight: 500;
 }
 
+.company-info {
+  flex-basis: 100%;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
 @media (min-width: 768px) {
   .privacy-header,
   .privacy,
