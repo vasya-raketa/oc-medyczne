@@ -1,0 +1,142 @@
+/*
+  Privacy policy subpage (polityka-prywatnosci.html). Header on white like the hero,
+  then the policy text in a readable column inside --canvas-width.
+*/
+
+.privacy-top {
+  background: var(--white);
+}
+
+.privacy-header {
+  width: 100%;
+  max-width: var(--canvas-width);
+  margin-inline: auto;
+  padding: 1.5rem var(--section-padding-x);
+}
+
+.privacy {
+  width: 100%;
+  max-width: var(--canvas-width);
+  margin-inline: auto;
+  padding: var(--section-space) var(--section-padding-x);
+}
+
+.privacy-body {
+  max-width: 48rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: var(--ink);
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.privacy-body h1 {
+  margin-bottom: 0.5rem;
+  color: var(--blue);
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.privacy-body h2 {
+  margin-top: 1.5rem;
+  color: var(--blue);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.privacy-lead {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.privacy-body ul,
+.privacy-body ol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 1.5em;
+}
+
+.privacy-body ul {
+  list-style: disc;
+}
+
+.privacy-body ol {
+  list-style: lower-alpha;
+}
+
+.privacy-body ul ul {
+  margin-top: 0.5rem;
+  list-style: circle;
+}
+
+.privacy-body a {
+  color: var(--blue);
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.privacy-body a:focus-visible,
+.privacy-footer a:focus-visible {
+  outline: 0.125rem solid var(--blue);
+  outline-offset: 0.125rem;
+}
+
+.privacy-footer {
+  border-top: 1px solid var(--line);
+}
+
+.privacy-footer-inner {
+  width: 100%;
+  max-width: var(--canvas-width);
+  margin-inline: auto;
+  padding: 1.875rem var(--section-padding-x);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.9375rem;
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .privacy-header,
+  .privacy,
+  .privacy-footer-inner {
+    padding-inline: 2.5rem;
+  }
+
+  .privacy-body {
+    font-size: 1rem;
+  }
+
+  .privacy-body h1 {
+    font-size: 2.875rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .privacy-header,
+  .privacy,
+  .privacy-footer-inner {
+    padding-inline: 3.75rem;
+  }
+
+  .privacy-header {
+    padding-block: 2.5rem;
+  }
+
+  .privacy-body {
+    font-size: 1.125rem;
+  }
+
+  .privacy-body h1 {
+    font-size: 3.375rem;
+  }
+}
