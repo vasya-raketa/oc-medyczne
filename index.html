@@ -64,17 +64,8 @@
     <link rel="stylesheet" href="components/pricing.css" />
     <link rel="stylesheet" href="components/coop.css" />
     <link rel="stylesheet" href="components/contact.css" />
+    <link rel="stylesheet" href="components/cookie-banner.css" />
   </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SH56F3CSJT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-SH56F3CSJT');
-</script>
-
   <body>
     <!--
       ≤767: GSAP pins this whole frame while the Współpraca cards scroll sideways. The
@@ -309,6 +300,7 @@
         <div class="legal-bar">
           <p>© 2026 RkRisk Wszelkie prawa zastrzeżone.</p>
           <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+          <button class="cookie-settings" type="button" data-cookie-settings>Ustawienia cookies</button>
         </div>
       </div>
     </footer>
@@ -343,6 +335,7 @@
     <script src="components/coop.js" defer></script>
     <script src="script.js" defer></script>
     <script src="js/animations.js" defer></script>
+    <script src="js/consent.js" defer></script>
   </body>
 </html>
 
