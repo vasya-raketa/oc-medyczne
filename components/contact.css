@@ -421,6 +421,22 @@
   font-weight: 500;
 }
 
+/* ≤767: one line across the full width, the links pushed to the edges. */
+.legal-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .legal-links {
+    justify-content: flex-start;
+    width: auto;
+  }
+}
+
 /* 480–767: 480 frame, sizes from the scale.css tokens. */
 @media (min-width: 480px) and (max-width: 767.98px) {
   .contact {
