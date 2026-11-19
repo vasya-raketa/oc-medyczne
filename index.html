@@ -64,6 +64,7 @@
     <link rel="stylesheet" href="components/coop.css" />
     <link rel="stylesheet" href="components/contact.css" />
     <link rel="stylesheet" href="components/cookie-banner.css" />
+    <link rel="stylesheet" href="components/company.css" />
   </head>
   <body>
     <!--
@@ -89,7 +90,7 @@
         />
 
         <header class="site-header">
-          <a class="logo-link" href="#top">
+          <a class="logo-link" href="https://www.rkrisk.pl/">
             <img class="logo" src="assets/logo.png" alt="RkRisk Multiagencja" />
           </a>
           <nav class="site-nav" aria-label="Sekcje strony">
@@ -278,9 +279,15 @@
                 <div class="consent-field">
                   <label class="consent">
                     <input id="f-consent" type="checkbox" name="consent" value="on" required aria-describedby="f-consent-error" />
-                    <span>Wyrażam zgodę na kontakt telefoniczny i/lub e-mailowy przez RkRisk Sp. z o.o. w celu przedstawienia informacji i oferty ubezpieczeniowej w odpowiedzi na moje zapytanie.</span>
+                    <span>Wyrażam zgodę na kontakt telefoniczny i/lub e-mailowy przez RkRisk Sp. z o.o. w celu przedstawienia informacji i oferty ubezpieczeniowej w odpowiedzi na moje zapytanie. Zgoda może być cofnięta w każdym momencie za pośrednictwem poczty elektronicznej. Przetwarzanie danych teleadresowych do momentu cofnięcia zgody będzie zgodne z prawem, to jest z RODO oraz z ustawą z dnia 12.07.2024 r. Prawo komunikacji elektronicznej.</span>
                   </label>
                   <p class="field-error" id="f-consent-error" hidden></p>
+                </div>
+                <div class="consent-field">
+                  <label class="consent">
+                    <input id="f-marketing" type="checkbox" name="marketing" value="on" />
+                    <span>Wyrażam zgodę na przetwarzanie przez RkRisk sp. z o.o. mojego adresu poczty elektronicznej w celu przesyłania informacji handlowej, prowadzenia marketingu bezpośredniego w zakresie produktów i usług oferowanych przez RkRisk sp. z o.o. Zgoda może być cofnięta w każdym momencie za pośrednictwem poczty elektronicznej. Przetwarzanie adresu do momentu cofnięcia zgody będzie zgodne z prawem, to jest z RODO oraz z ustawą z dnia 12.07.2024 r. Prawo komunikacji elektronicznej.</span>
+                  </label>
                 </div>
               </div>
             </div>
@@ -297,14 +304,21 @@
         </div>
 
         <div class="legal-bar">
-          <p>© 2026 RkRisk Wszelkie prawa zastrzeżone.</p>
+          <!-- TODO: if RkRisk wants it shown, add a "Numer w rejestrze agentów KNF: [..]" line to the tooltip. -->
+          <p class="company">
+            © 2026 <button class="company-name" type="button" aria-describedby="company-tip">RkRisk sp. z o.o.</button> Wszelkie prawa zastrzeżone.
+            <span class="company-tip" id="company-tip" role="tooltip">
+              RkRisk sp. z o.o., ul. Powstańców Śląskich 121/208, 53-332 Wrocław<br />
+              KRS 0001029149 Sąd Rejonowy dla Wrocławia Fabrycznej, VI Wydział Gospodarczy KRS<br />
+              Regon: 524954107, NIP: 899-29-56-779<br />
+              Wysokość kapitału zakładowego: 5 000 PLN
+            </span>
+          </p>
           <div class="legal-links">
             <a href="polityka-prywatnosci.html">Polityka prywatności</a>
             <button class="cookie-settings" type="button" data-cookie-settings>Ustawienia cookies</button>
           </div>
         </div>
-        <!-- TODO: if RkRisk wants it shown, append ", Numer w rejestrze agentów KNF: [..]". -->
-        <p class="company-info">RkRisk Sp. z o.o., ul. Powstańców Śląskich 121/208, 53-332 Wrocław, [TODO: sąd rejestrowy], KRS [TODO], NIP [TODO], kapitał zakładowy [TODO] zł</p>
       </div>
     </footer>
     <!--

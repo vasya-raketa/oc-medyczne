@@ -1,0 +1,64 @@
+/*
+  Company name in the footer copyright line (both pages) with a tooltip holding the
+  registry details (art. 206 KSH). Opens above the line on hover, focus or tap; the
+  tooltip is anchored to the paragraph's left edge, so it never leaves the viewport.
+*/
+
+.company {
+  position: relative;
+}
+
+.company-name {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline dotted;
+  text-underline-offset: 0.2em;
+  cursor: help;
+}
+
+.company-name:focus-visible {
+  outline: 0.125rem solid currentColor;
+  outline-offset: 0.125rem;
+}
+
+.company-tip {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 0.5rem);
+  z-index: 1;
+  width: max-content;
+  max-width: min(26rem, 100vw - 2 * var(--section-padding-x));
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  box-shadow: 0 0.5rem 1.5rem rgb(21 21 74 / 0.16);
+  color: var(--ink);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: left;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s, visibility 0.15s;
+}
+
+/* Bridges the gap to the line, so the pointer can move onto the tooltip. */
+.company-tip::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 0.5rem;
+}
+
+.company-name:hover ~ .company-tip,
+.company-name:focus ~ .company-tip,
+.company-tip:hover {
+  visibility: visible;
+  opacity: 1;
+}
