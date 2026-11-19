@@ -27,10 +27,15 @@ const FIELDS = {
   profession: ["Specjalizacja / zawód", 150],
 };
 
+/* Field name => [text shown next to the checkbox (kept as proof of consent), required]. */
 const CONSENTS = {
   consent: [
-    "Wyrażam zgodę na kontakt telefoniczny i/lub e-mailowy przez RkRisk Sp. z o.o. w celu przedstawienia informacji i oferty ubezpieczeniowej w odpowiedzi na moje zapytanie.",
+    "Wyrażam zgodę na kontakt telefoniczny i/lub e-mailowy przez RkRisk Sp. z o.o. w celu przedstawienia informacji i oferty ubezpieczeniowej w odpowiedzi na moje zapytanie. Zgoda może być cofnięta w każdym momencie za pośrednictwem poczty elektronicznej. Przetwarzanie danych teleadresowych do momentu cofnięcia zgody będzie zgodne z prawem, to jest z RODO oraz z ustawą z dnia 12.07.2024 r. Prawo komunikacji elektronicznej.",
     true,
+  ],
+  marketing: [
+    "Wyrażam zgodę na przetwarzanie przez RkRisk sp. z o.o. mojego adresu poczty elektronicznej w celu przesyłania informacji handlowej, prowadzenia marketingu bezpośredniego w zakresie produktów i usług oferowanych przez RkRisk sp. z o.o. Zgoda może być cofnięta w każdym momencie za pośrednictwem poczty elektronicznej. Przetwarzanie adresu do momentu cofnięcia zgody będzie zgodne z prawem, to jest z RODO oraz z ustawą z dnia 12.07.2024 r. Prawo komunikacji elektronicznej.",
+    false,
   ],
 };
 
@@ -247,7 +252,10 @@ module.exports = async function handler(req, res) {
     }
     const message = multiLine(body.question);
     /* Only an explicit "on" (form) or true (JSON) counts as consent. */
-    const consents = { consent: body.consent === "on" || body.consent === true };
+    const consents = {};
+    for (const field of Object.keys(CONSENTS)) {
+      consents[field] = body[field] === "on" || body[field] === true;
+    }
     const errors = {};
 
     if (values.name === "") errors.name = "Podaj swoje imię.";

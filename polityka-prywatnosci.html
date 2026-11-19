@@ -16,12 +16,13 @@
     <link rel="stylesheet" href="components/button.css" />
     <link rel="stylesheet" href="components/header.css" />
     <link rel="stylesheet" href="components/cookie-banner.css" />
+    <link rel="stylesheet" href="components/company.css" />
     <link rel="stylesheet" href="styles/privacy.css" />
   </head>
   <body>
     <div class="privacy-top">
       <header class="site-header privacy-header">
-        <a class="logo-link" href="index.html">
+        <a class="logo-link" href="https://www.rkrisk.pl/">
           <img class="logo" src="assets/logo.png" alt="RkRisk Multiagencja" />
         </a>
         <a class="btn btn-nav" href="index.html">Strona główna</a>
@@ -81,7 +82,7 @@
         <p>Przysługują Państwu wszystkie uprawnienia, wynikające z RODO, tj.:</p>
         <ul>
           <li>Prawo dostępu do danych osobowych, prawo żądania sprostowania oraz usunięcia danych, ograniczenia ich przetwarzania, prawo do ich przenoszenia, niepodlegania zautomatyzowanemu podejmowaniu decyzji, w tym profilowaniu, a także prawo do wyrażenia sprzeciwu wobec przetwarzania danych osobowych.</li>
-          <li>Prawo wniesienia skargi w związku z przetwarzaniem przez Spółkę Pani/Pana danych osobowych do organu nadzorczego – Prezesa Urzędu Ochrony Danych Osobowych (ul. Stawki 2, 00-193 Warszawa).</li>
+          <li>Prawo wniesienia skargi w związku z przetwarzaniem przez Spółkę Pani/Pana danych osobowych do organu nadzorczego – Prezesa Urzędu Ochrony Danych Osobowych.</li>
           <li>
             Prawo wniesienia sprzeciwu wobec przetwarzania Państwa danych osobowych, gdy:
             <ul>
@@ -113,17 +114,24 @@
           <li>Vercel Inc. – dane przetwarzane przy obsłudze strony i formularza (hosting);</li>
           <li>Google LLC – dane zbierane przez Google Analytics, wyłącznie za Państwa zgodą.</li>
         </ul>
-        <p>Przekazanie odbywa się na podstawie decyzji Komisji Europejskiej stwierdzającej odpowiedni stopień ochrony w ramach EU-US Data Privacy Framework (art. 45 RODO), wobec podmiotów certyfikowanych w tym programie, a w pozostałym zakresie – na podstawie standardowych klauzul umownych zatwierdzonych przez Komisję Europejską (art. 46 ust. 2 lit. c RODO).</p>
+        <p>Przekazanie odbywa się na podstawie decyzji wykonawczej Komisji Europejskiej (UE) 2023/1795 z dnia 10 lipca 2023 r., która stwierdza odpowiedni stopień ochrony (art. 45 RODO). Dodatkowo przekazanie jest zabezpieczone standardowymi klauzulami umownymi zatwierdzonymi przez Komisję Europejską (art. 46 ust. 2 lit. c RODO). Kopię tych zabezpieczeń mogą Państwo uzyskać, kontaktując się z nami pod adresem <a href="mailto:biuro@rkrisk.pl">biuro@rkrisk.pl</a>.</p>
       </article>
     </main>
 
     <footer class="privacy-footer">
       <div class="privacy-footer-inner">
-        <p>© 2026 RkRisk Wszelkie prawa zastrzeżone.</p>
+        <!-- TODO: if RkRisk wants it shown, add a "Numer w rejestrze agentów KNF: [..]" line to the tooltip. -->
+        <p class="company">
+          © 2026 <button class="company-name" type="button" aria-describedby="company-tip">RkRisk sp. z o.o.</button> Wszelkie prawa zastrzeżone.
+          <span class="company-tip" id="company-tip" role="tooltip">
+            RkRisk sp. z o.o., ul. Powstańców Śląskich 121/208, 53-332 Wrocław<br />
+            KRS 0001029149 Sąd Rejonowy dla Wrocławia Fabrycznej, VI Wydział Gospodarczy KRS<br />
+            Regon: 524954107, NIP: 899-29-56-779<br />
+            Wysokość kapitału zakładowego: 5 000 PLN
+          </span>
+        </p>
         <button class="cookie-settings" type="button" data-cookie-settings>Ustawienia cookies</button>
         <a href="index.html">Wróć na stronę główną</a>
-        <!-- TODO: if RkRisk wants it shown, append ", Numer w rejestrze agentów KNF: [..]". -->
-        <p class="company-info">RkRisk Sp. z o.o., ul. Powstańców Śląskich 121/208, 53-332 Wrocław, [TODO: sąd rejestrowy], KRS [TODO], NIP [TODO], kapitał zakładowy [TODO] zł</p>
       </div>
     </footer>
     <script src="js/consent.js" defer></script>
